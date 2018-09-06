@@ -25,11 +25,7 @@ export class ApiService {
       map((block: any) => {
         return <Result<Block>>{
           isError: false,
-          value: <Block>{
-            ...block,
-            timestamp: block.timestamp - 7200,
-            timestampISO: moment.unix(block.timestamp - 7200).toISOString()
-          }
+          value: block as Block
         };
       }),
       catchError(error => {
@@ -47,18 +43,8 @@ export class ApiService {
       map((transactions: any[]) => {
         return <Result<Transaction[]>>{
           isError: false,
-          value: transactions.map(transaction => {
-            return <Transaction>{
-              ...transaction,
-              createdAt: transaction.createdAt - 7200,
-              createdAtISO: moment.unix(transaction.createdAt - 7200).toISOString(),
-              expiration: transaction.expiration - 7200,
-              expirationISO: moment.unix(transaction.expiration - 7200).toISOString(),
-              updatedAt: transaction.updatedAt - 7200,
-              updatedAtISO: moment.unix(transaction.updatedAt - 7200).toISOString()
-            };
-          })
-        }
+          value: transactions as Transaction[]
+        };
       }),
       catchError(error => {
         this.logger.error('API_ERROR', error);
