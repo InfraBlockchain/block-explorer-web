@@ -40,10 +40,10 @@
           {{block.numTransactions}}
         </td>
       </ng-container>
-      <ng-container matColumnDef="confirmed">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Confirmations' | translate }}</th>
+      <ng-container matColumnDef="trx_votes">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Trx Votes (PoT)' | translate }}</th>
         <td mat-cell *matCellDef="let block">
-          {{block.confirmed}}
+          {{block.trxVotes}}
         </td>
       </ng-container>
     </table>

@@ -40,5 +40,5 @@ export const BLOCK_COLUMNS = [
   'irreversible',
   'producer',
   'numTransactions',
-  'confirmed'
+  'trx_votes'
 ];

@@ -8,6 +8,7 @@ export interface Block {
   irreversible?: boolean;
   newProducers: any;
   numTransactions: number;
+  trxVotes: number;
   prevBlockId: string;
   producer: string;
   timestamp: number;
