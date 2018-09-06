@@ -15,7 +15,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { ActionService } from './services/action.service';
-import { StatService } from './services/stat.service';
 import { BpService } from './services/bp.service';
 import { AppService } from './services/app.service';
 import { DataService } from './services/data.service';
@@ -51,7 +50,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     EosService,
     AccountService,
     ActionService,
-    StatService,
     BpService,
     AppService,
     DataService,
