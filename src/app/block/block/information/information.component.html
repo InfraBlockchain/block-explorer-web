@@ -39,6 +39,11 @@
           <td>{{ 'Number of Transactions' | translate }}:</td>
           <td>{{block.block.transactions.length}}</td>
         </tr>
+        <tr>
+          <td>{{ 'Irreversible' | translate }}:</td>
+            <td *ngIf="block.irrAt">true ({{block.irrAt.$date | date: 'MMM d, y, h:mm:ss.SSS a'}})</td>
+            <td *ngIf="!block.irrAt"> false </td>
+        </tr>
       </table>
     </mat-card-content>
   </mat-card>
