@@ -1,5 +1,3 @@
-# yosemite-explorer-web
-
 YOSEMITE Explorer Web
 ========================
 
