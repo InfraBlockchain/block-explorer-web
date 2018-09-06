@@ -1,5 +1,5 @@
-<app-table [dataSource]="block.transactions" [title]="'Transactions' | translate" [enablePager]="false">
-  <table mat-table [dataSource]="block.transactions">
+<app-table [dataSource]="block.block.transactions" [title]="'Transactions' | translate" [enablePager]="false">
+  <table mat-table [dataSource]="block.block.transactions">
     <tr mat-header-row *matHeaderRowDef="transactionsColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: transactionsColumns;"></tr>
     <ng-container matColumnDef="index">

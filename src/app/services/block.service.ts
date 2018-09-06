@@ -4,27 +4,39 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Block, Transaction, Result } from '../models';
-import { EosService } from './eos.service';
+// import { EosService } from './eos.service';
+import {BlockDetail} from '../models/BlockDetail';
 
 @Injectable()
 export class BlockService {
 
   constructor(
-    private http: HttpClient,
-    private eosService: EosService
+    private http: HttpClient
+    // private eosService: EosService
   ) { }
 
-  getBlock(id: number): Observable<Result<Block>> {
-    return this.http.get(`${environment.apiUrl}/blocks/${id}`).pipe(
+  getBlock(blockNum: number): Observable<Result<BlockDetail>> {
+    return this.http.get(`${environment.apiUrl}/blocks/${blockNum}`).pipe(
       map(block => {
-        return <Result<Block>>{
+        return <Result<BlockDetail>>{
           isError: false,
-          value: block as Block
+          value: block as BlockDetail
         };
-      }),
-      catchError(error => {
-        console.log('TODO: API Error', error);
-        return this.eosService.getBlock(id);
+      })
+      // catchError(error => {
+      //   console.log('TODO: API Error', error);
+      //   return this.eosService.getBlock(id);
+      // })
+    );
+  }
+
+  getBlockById(blockId: string): Observable<Result<BlockDetail>> {
+    return this.http.get(`${environment.apiUrl}/blocks/id/${blockId}`).pipe(
+      map(block => {
+        return <Result<BlockDetail>>{
+          isError: false,
+          value: block as BlockDetail
+        };
       })
     );
   }

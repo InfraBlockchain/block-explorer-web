@@ -9,40 +9,40 @@
         <tr>
           <td>{{ 'Block Producer' | translate }}:</td>
           <td>
-            <a [routerLink]="['/producers',block.producer]">{{block.producer}}</a>
+            <a [routerLink]="['/producers',block.block.producer]">{{block.block.producer}}</a>
           </td>
         </tr>
         <tr>
           <td>{{ 'Timestamp' | translate }}:</td>
-          <td>{{block.timestamp | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
+          <td>{{block.block.timestamp | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
         </tr>
         <tr>
           <td>{{ 'Block ID' | translate }}:</td>
-          <td>{{block.id}}</td>
+          <td>{{block.block_id}}</td>
         </tr>
         <tr>
           <td>{{ 'Previous Block ID' | translate }}:</td>
           <td>
-            <span *ngIf="block.block_num <= 1">{{block.previous}}</span>
-            <a [routerLink]="['/blocks',block.block_num-1]" *ngIf="block.block_num > 1">{{block.previous}}</a>
+            <span *ngIf="block.block_num <= 1">{{block.block.previous}}</span>
+            <a [routerLink]="['/blocks',block.block_num-1]" *ngIf="block.block_num > 1">{{block.block.previous}}</a>
           </td>
         </tr>
         <tr>
           <td>{{ 'Transaction Merkle Root' | translate }}:</td>
-          <td>{{block.transaction_mroot}}</td>
+          <td>{{block.block.transaction_mroot}}</td>
         </tr>
         <tr>
           <td>{{ 'Action Merkle Root' | translate }}:</td>
-          <td>{{block.action_mroot}}</td>
+          <td>{{block.block.action_mroot}}</td>
         </tr>
         <tr>
           <td>{{ 'Number of Transactions' | translate }}:</td>
-          <td>{{block.transactions.length}}</td>
+          <td>{{block.block.transactions.length}}</td>
         </tr>
       </table>
     </mat-card-content>
   </mat-card>
-  <div *ngIf="block.transactions.length" style="margin-top:20px;">
+  <div *ngIf="block.block.transactions.length" style="margin-top:20px;">
     <app-block-transactions [block]="block"></app-block-transactions>
   </div>
 </div>
