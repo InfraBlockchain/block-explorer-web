@@ -6,12 +6,14 @@ import { environment } from '../../environments/environment';
 import { Block, Transaction, Result } from '../models';
 // import { EosService } from './eos.service';
 import {BlockDetail} from '../models/BlockDetail';
+import {LoggerService} from './logger.service';
 
 @Injectable()
 export class BlockService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private logger: LoggerService
     // private eosService: EosService
   ) { }
 
@@ -22,11 +24,18 @@ export class BlockService {
           isError: false,
           value: block as BlockDetail
         };
-      })
+      }),
       // catchError(error => {
       //   console.log('TODO: API Error', error);
       //   return this.eosService.getBlock(id);
       // })
+      catchError(error => {
+        this.logger.error('API_ERROR', error);
+        return of({
+          isError: true,
+          value: error
+        });
+      })
     );
   }
 
@@ -37,13 +46,14 @@ export class BlockService {
           isError: false,
           value: block as BlockDetail
         };
+      }),
+      catchError(error => {
+        this.logger.error('API_ERROR', error);
+        return of({
+          isError: true,
+          value: error
+        });
       })
-    );
-  }
-
-  getBlockId(id: string): Observable<Block> {
-    return this.http.get(`${environment.apiUrl}/blocks/id/${id}`).pipe(
-      map(block => block as Block)
     );
   }
 

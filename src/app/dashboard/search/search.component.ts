@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
 
   private tryBlockId(query: string): Observable<string> {
     if (query.length === 64) {
-      return this.blockService.getBlockId(query).pipe(
+      return this.blockService.getBlockById(query).pipe(
         catchError(() => of(null)),
         switchMap(data => {
           if (data) {
