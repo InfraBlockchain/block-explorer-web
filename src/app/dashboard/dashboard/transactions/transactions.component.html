@@ -21,7 +21,7 @@
         <ng-container matColumnDef="createdAt">
           <th mat-header-cell *matHeaderCellDef>{{ 'Time' | translate }}</th>
           <td mat-cell *matCellDef="let transaction">
-            {{transaction.createdAt | amFromUnix | amSubtract: 2 : 'hours' | date:'medium'}}
+            {{transaction.createdAt | date:'MMM d, y, h:mm:ss.SSS a'}}
           </td>
         </ng-container>
         <ng-container matColumnDef="numActions">

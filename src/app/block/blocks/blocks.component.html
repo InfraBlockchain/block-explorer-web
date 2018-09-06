@@ -19,7 +19,7 @@
       <ng-container matColumnDef="timestamp">
         <th mat-header-cell *matHeaderCellDef>{{ 'Timestamp' | translate }}</th>
         <td mat-cell *matCellDef="let block" class="truncate">
-          {{block.timestamp | amFromUnix | amSubtract: 2 : 'hours' | date:'medium'}}
+          {{block.timestamp | amFromUnix | date:'MMM d, y, h:mm:ss.SSS a'}}
         </td>
       </ng-container>
       <ng-container matColumnDef="irreversible">
