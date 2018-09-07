@@ -40,6 +40,17 @@
           <td>{{block.block.transactions.length}}</td>
         </tr>
         <tr>
+          <td>{{ 'Transaction Votes (Proof-of-Transaction)' | translate }}:</td>
+          <td *ngIf="block.trx_votes && block.trx_votes.length > 0">
+            <span *ngFor="let trx_vote of block.trx_votes">
+              ( <b>{{trx_vote[0]}}</b> <- <b>{{trx_vote[1]}}</b> )
+            </span>
+          </td>
+          <td *ngIf="!block.trx_votes || block.trx_votes.length == 0">
+            None
+          </td>
+        </tr>
+        <tr>
           <td>{{ 'Irreversible' | translate }}:</td>
             <td *ngIf="block.irrAt">true ({{block.irrAt.$date | date: 'MMM d, y, h:mm:ss.SSS a'}})</td>
             <td *ngIf="!block.irrAt"> false </td>
