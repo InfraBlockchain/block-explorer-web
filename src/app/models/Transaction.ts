@@ -1,14 +1,11 @@
 export interface Transaction {
-  blockId: number;
-  createdAt: number;
-  createdAtISO: string;
-  expiration: number;
-  expirationISO: string;
   id: string;
-  numActions: number;
+  blockNum: number;
+  timestamp: number;
+  expiration: number;
   pending: boolean;
-  refBlockPrefix: number;
-  updatedAt: number;
-  updatedAtISO: string;
+  numActions: number;
+  trxVote: number;
+  irrAt: number;
   chainData?: any;
 }

@@ -99,7 +99,7 @@ export class DataService {
         }
       }),
       catchError(err => {
-        return this.eosService.getTransactionHistory(transaction.id, transaction.blockId).pipe(
+        return this.eosService.getTransactionHistory(transaction.id, transaction.blockNum).pipe(
           map((transaction: any) => transaction.trx.trx.actions),
           map((actions: any) => actions.map((action, index) => {
             return {
@@ -107,7 +107,7 @@ export class DataService {
               authorizations: action.authorization,
               parentId: 0,
               seq: index,
-              blockId: transaction.blockId,
+              blockNum: transaction.blockNum,
               transaction: transaction.id
             };
           }))

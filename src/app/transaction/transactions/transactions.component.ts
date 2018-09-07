@@ -36,8 +36,8 @@ export class TransactionsComponent implements OnInit {
 
 export const TRANSACTION_COLUMNS = [
   'id',
-  'blockId',
-  'createdAt',
+  'blockNum',
+  'timestamp',
   'expiration',
   'numActions'
 ];

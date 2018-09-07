@@ -143,16 +143,12 @@ export class EosService {
             version: block.schedule_version,
             transactions: block.transactions.map(transaction => {
               return <Transaction>{
-                blockId: block.block_num,
-                createdAt: moment.utc(block.timestamp).unix(),
-                createdAtISO: moment.utc(block.timestamp).toISOString(),
+                blockNum: block.block_num,
+                timestamp: moment.utc(block.timestamp).unix(),
                 expiration: moment.utc(transaction.trx.transaction.expiration).unix(),
-                expirationISO: moment.utc(transaction.trx.transaction.expiration).toISOString(),
                 id: transaction.trx.id,
                 numActions: transaction.trx.transaction.actions.length,
                 pending: transaction.trx.transaction.delay_sec > 0,
-                updatedAt: moment.utc(block.timestamp).unix(),
-                updatedAtISO: moment.utc(block.timestamp).toISOString(),
                 chainData: transaction
               };
             }),
@@ -170,14 +166,14 @@ export class EosService {
     );
   }
 
-  getTransaction(id: string): Observable<Result<Transaction>> {
+  getTransaction(id: string): Observable<Result<any>> {
     return from(this.eos.getTransaction({ id })).pipe(
       map((transaction: any) => {
-        return <Result<Transaction>>{
+        return <Result<any>>{
           isError: false,
           value: {
             blockId: transaction.block_num,
-            createdAt: new Date(transaction.block_time).getTime() / 1000,
+            timestamp: new Date(transaction.block_time).getTime() / 1000,
             expiration: new Date(transaction.trx.trx.expiration).getTime() / 1000,
             id: transaction.id,
             numActions: transaction.trx.trx.actions.length,
