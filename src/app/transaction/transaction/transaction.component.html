@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+  <h1 class="mat-headline">
+    {{ 'Transaction' | translate }}
+  </h1>
+</mat-toolbar>
+TODO add expiration, delay seconds (pending), transaction vote (PoT), inline actions flag field
+<ng-container *ngIf="transaction$ | async as transaction; else loading">
+  <mat-tab-group color="primary" dynamicHeight="true" *ngIf="!transaction.isError; else error">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:5px;">info</mat-icon>
+        {{ 'Transaction Information' | translate }}
+      </ng-template>
+      <app-transaction-information [transaction]="transaction.value"></app-transaction-information>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:5px;">code</mat-icon>
+        {{ 'Blockchain Raw Data' | translate }}
+      </ng-template>
+      <prettyjson [obj]="transaction.value"></prettyjson>
+    </mat-tab>
+  </mat-tab-group>
+  <ng-template #error>
+    <app-error></app-error>
+  </ng-template>
+</ng-container>
+<ng-container *ngIf="transactionActions$ | async as trxActions; else loading">
+  <mat-tab-group color="primary" dynamicHeight="true" *ngIf="trxActions.length > 0; else error">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:5px;">info</mat-icon>
+        {{ 'Actions Processed' | translate }}
+      </ng-template>
+      <app-transaction-actions [transactionActions]="trxActions"></app-transaction-actions>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon style="margin-right:5px;">code</mat-icon>
+        {{ 'Blockchain Raw Data' | translate }}
+      </ng-template>
+      <prettyjson [obj]="trxActions"></prettyjson>
+    </mat-tab>
+  </mat-tab-group>
+  <ng-template #error>
+    <app-error></app-error>
+  </ng-template>
+</ng-container>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

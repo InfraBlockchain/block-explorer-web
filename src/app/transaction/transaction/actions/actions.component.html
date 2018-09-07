@@ -1,0 +1,59 @@
+<div *ngIf="transactionActions; else loading" style="margin:10px;">
+  <!--<table mat-table>-->
+    <!--<td>{{ 'Number of Executed Actions' | translate }}:</td>-->
+    <!--<td>{{transactionActions.length}}</td>-->
+  <!--</table>-->
+  <app-table [dataSource]="transactionActions" [title]="'Actions' | translate" [enablePager]="false">
+    <table mat-table [dataSource]="transactionActions">
+      <tr mat-header-row *matHeaderRowDef="actionsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: actionsColumns;"></tr>
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Index' | translate }}</th>
+        <td mat-cell *matCellDef="let action; let i = index">
+          <a [routerLink]="['/actions',action.bNum,action.trx_id,i]">{{i + 1}}</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="global_seq">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Seq' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+          {{action.receipt.global_sequence}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="account">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Account' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+          <a [routerLink]="['/accounts',action.act.account]">{{action.act.account}}</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="receiver">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Receiver' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+          <a [routerLink]="['/accounts',action.receipt.receiver]">{{action.receipt.receiver}}</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="authorization">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Authorizations' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+        <span *ngFor="let auth of action.act.authorization">
+          {{auth.actor}}@{{auth.permission}}
+        </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Name' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+          <b>{{action.act.name}}</b>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Data' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+          {{action.act.data | json}}
+        </td>
+      </ng-container>
+    </table>
+  </app-table>
+</div>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>
