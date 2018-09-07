@@ -35,5 +35,6 @@ export class TransactionsComponent implements OnInit {
 export const TRANSACTIONS_COLUMNS = [
   'id',
   'timestamp',
-  'numActions'
+  'numActions',
+  'trxVote'
 ];

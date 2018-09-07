@@ -43,5 +43,6 @@ export const BLOCKS_COLUMNS = [
   'blockNumber',
   'timestamp',
   'producer',
-  'numTransactions'
+  'numTransactions',
+  'txVotes'
 ];

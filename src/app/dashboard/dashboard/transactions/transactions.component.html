@@ -30,6 +30,12 @@
             {{transaction.numActions}}
           </td>
         </ng-container>
+        <ng-container matColumnDef="trxVote">
+          <th mat-header-cell *matHeaderCellDef>{{ 'PoT Vote' | translate }}</th>
+          <td mat-cell *matCellDef="let transaction">
+            {{transaction.trxVote}}
+          </td>
+        </ng-container>
       </table>
     </app-table>
   </mat-card-content>
