@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   walletUrl: 'https://walleteos.com',
   votingUrl: 'https://eosportal.io',
-  appName: 'YOSEMITE Explorer',
+  appName: 'YOSEMITE Blockchain Explorer',
   logoUrl: '/assets/logo.png',
   apiUrl: 'http://localhost:9000',
   blockchainUrl: 'http://localhost:8888',
