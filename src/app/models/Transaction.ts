@@ -6,6 +6,6 @@ export interface Transaction {
   pending: boolean;
   numActions: number;
   trxVote: number;
-  irrAt: number;
+  irreversible: boolean;
   chainData?: any;
 }

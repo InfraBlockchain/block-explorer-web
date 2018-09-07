@@ -38,6 +38,8 @@ export const TRANSACTION_COLUMNS = [
   'id',
   'blockNum',
   'timestamp',
+  'irreversible',
   'expiration',
-  'numActions'
+  'numActions',
+  'trxVote'
 ];
