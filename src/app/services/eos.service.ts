@@ -237,8 +237,8 @@ export class EosService {
     })).pipe(
       map((result: any) => {
         return result.rows
-          .map(row => ({ ...row, total_votes: parseFloat(row.total_votes) }))
-          .sort((a, b) => b.total_votes - a.total_votes);
+          .map(row => ({ ...row, total_votes: parseFloat(row.total_votes), total_votes_weight: parseFloat(row.total_votes_weight) }))
+          .sort((a, b) => b.total_votes_weight - a.total_votes_weight);
       })
     );
   }
