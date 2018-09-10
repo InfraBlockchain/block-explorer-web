@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <h1 class="mat-headline">
+    {{ 'Account' | translate }} {{name$ | async}}
+  </h1>
+</mat-toolbar>
+<ng-container *ngIf="account$ | async as account; else loading">
+  <ng-container *ngIf="!account.isError; else error">
+    <app-account-information [account]="account.value" ></app-account-information>
+    <mat-tab-group color="primary" dynamicHeight="true">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon style="margin-right:5px;">list</mat-icon>
+          {{ 'Received Actions' | translate }}
+        </ng-template>
+        <app-account-actions [actions]="accountActions$ | async" [newActions]="accountNewActions$ | async" (onLoadMore)="loadMore($event)"></app-account-actions>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon style="margin-right:5px;">code</mat-icon>
+          {{ 'BlockchainRawData' | translate }}
+        </ng-template>
+        <prettyjson [obj]="account.value"></prettyjson>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon style="margin-right:5px;">code</mat-icon>
+          {{ 'Contract ABI' | translate }}
+        </ng-template>
+        <ng-template matTabContent>
+          <div *ngIf="(accountAbi$ | async) as abi; else loading">
+            <prettyjson [obj]="abi.value"></prettyjson>
+          </div>
+          <ng-template #loading>
+            <app-spinner></app-spinner>
+          </ng-template>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-container>
+  <ng-template #error>
+    <app-error></app-error>
+  </ng-template>
+</ng-container>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

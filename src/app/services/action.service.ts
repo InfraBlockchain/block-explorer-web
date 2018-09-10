@@ -12,6 +12,16 @@ export class ActionService {
     private http: HttpClient
   ) { }
 
+  getActionsForAccount(account: string, start_seq: number, offset: number): Observable<Action[]> {
+    return this.http.get(`${environment.apiUrl}/actions/account/${account}`, {
+      params: new HttpParams({
+        fromString: `start=${start_seq}&offset=${offset}`
+      })
+    }).pipe(
+      map((actions: any) => actions.map(action => action as Action))
+    );
+  }
+
   getAction(id: string): Observable<Action> {
     return this.http.get(`${environment.apiUrl}/actions/${id}`).pipe(
       map(action => action as Action)

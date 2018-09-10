@@ -13,7 +13,7 @@ const appRoutes: Routes = [
     children: [
       { path: '', pathMatch: 'full', component: DashboardComponent },
       { path: 'search', component: SearchComponent },
-      // { path: 'accounts', loadChildren: './account/account.module#AccountModule' },
+      { path: 'accounts', loadChildren: './account/account.module#AccountModule' },
       { path: 'blocks', loadChildren: './block/block.module#BlockModule' },
       // { path: 'actions', loadChildren: './contract/contract.module#ContractModule' },
       { path: 'producers', loadChildren: './producer/producer.module#ProducerModule' },
