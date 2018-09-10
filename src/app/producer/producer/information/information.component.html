@@ -1,0 +1,81 @@
+<mat-card *ngIf="producer">
+  <mat-card-title>
+    {{ 'Producer' | translate }}
+  </mat-card-title>
+  <mat-card-content class="table-container">
+    <table *ngIf="producer">
+      <!--<tr *ngIf="producer.bpJson?.org?.candidate_name">-->
+        <!--<td>{{ 'Name' | translate }}:</td>-->
+        <!--<td>{{producer.bpJson.org.candidate_name}}</td>-->
+      <!--</tr>-->
+      <tr>
+        <td>{{ 'Account' | translate }}:</td>
+        <td fxLayout="row" fxLayoutAlign="start center">
+          <b>{{producer.account.name}}</b>
+          <!--<mat-icon *ngIf="producer.validated">verified_user</mat-icon>-->
+        </td>
+      </tr>
+      <tr>
+        <td>{{ 'Url' | translate }}:</td>
+        <td>
+          <a href="{{producer.url}}">{{producer.url}}</a>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ 'Public Key' | translate }}:</td>
+        <td fxLayout="row" fxLayoutAlign="start center">{{producer.producer_key}}
+          <mat-icon *ngIf="producer.validated">verified_user</mat-icon>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ 'Proof-of-Transaction Votes' | translate }}:</td>
+        <td>{{producer.totalVotes | number}}</td>
+      </tr>
+      <tr>
+        <td>{{ 'Proof-of-Transaction Votes (Weighted)' | translate }}:</td>
+        <td><b>{{producer.totalVotesWeight | number}}</b></td>
+      </tr>
+      <tr>
+        <td>{{ 'Votes%' | translate }}:</td>
+        <td><b>{{producer.votes}}%</b></td>
+      </tr>
+      <tr>
+        <td>{{ 'Rank' | translate }}:</td>
+        <td>#{{producer.position}}</td>
+      </tr>
+      <tr>
+        <td>{{ 'Unpaid Blocks' | translate }}:</td>
+        <td>{{producer.unpaid_blocks}}</td>
+      </tr>
+      <tr>
+        <td>{{ 'Last Reward Claim Time' | translate }}:</td>
+        <td>
+          <span *ngIf="producer.last_claim_time > 0">
+            {{producer.last_claim_time / 1000 | date:'MMM d, y, h:mm:ss.SSS a'}}
+          </span>
+          <span *ngIf="producer.last_claim_time == 0">
+            -
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ 'Location' | translate }}:</td>
+        <td>{{producer.location}}</td>
+      </tr>
+      <tr>
+        <td>{{ 'Active' | translate }}:</td>
+        <td>
+          <span *ngIf="producer.is_active">true</span>
+          <span *ngIf="!producer.is_active">false</span>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ 'Authorized (Trusted Seed Node)' | translate }}:</td>
+        <td>
+          <span *ngIf="producer.is_trusted_seed">ture</span>
+          <span *ngIf="!producer.is_trusted_seed">false</span>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
