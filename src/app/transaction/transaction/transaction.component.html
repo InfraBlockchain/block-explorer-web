@@ -3,7 +3,6 @@
     {{ 'Transaction' | translate }}
   </h1>
 </mat-toolbar>
-TODO add expiration, delay seconds (pending), transaction vote (PoT), inline actions flag field
 <ng-container *ngIf="transaction$ | async as transaction; else loading">
   <mat-tab-group color="primary" dynamicHeight="true" *ngIf="!transaction.isError; else error">
     <mat-tab>

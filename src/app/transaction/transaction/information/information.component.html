@@ -4,7 +4,7 @@
       <table>
         <tr>
           <td>{{ 'Transaction ID' | translate }}:</td>
-          <td>{{transaction.trx_id}}</td>
+          <td>{{transaction.id}}</td>
         </tr>
         <tr>
           <td>{{ 'Block Number' | translate }}:</td>
@@ -17,13 +17,20 @@
           <td>{{transaction.bTime.$date | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
         </tr>
         <tr>
+          <td>{{ 'Expiration' | translate }}:</td>
+          <td>{{transaction.expiration | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
+        </tr>
+        <tr>
           <td>{{ 'Irreversible' | translate }}:</td>
           <td *ngIf="transaction.irrAt">true ({{transaction.irrAt.$date | date:'MMM d, y, h:mm:ss.SSS a'}})</td>
           <td *ngIf="!transaction.irrAt"> false </td>
         </tr>
         <tr>
           <td>{{ 'Pending' | translate }}:</td>
-          <td>{{transaction.delay_sec > 0}}</td>
+          <td>
+            {{transaction.delay_sec > 0}}
+            <span *ngIf="transaction.delay_sec > 0">(delay: {{transaction.delay_sec}} seconds)</span>
+          </td>
         </tr>
         <tr>
           <td>{{ 'Status' | translate }}:</td>
@@ -39,7 +46,16 @@
         </tr>
         <tr>
           <td>{{ 'Number of Sent Actions' | translate }}:</td>
-          <td>{{transaction.actions.length}}</td>
+          <td><b>{{transaction.actions.length}}</b></td>
+        </tr>
+        <tr>
+          <td>{{ 'Transaction Vote (Proof-of-Transaction)' | translate }}:</td>
+          <td *ngIf="transaction.trx_vote && transaction.trx_vote.amt">
+            <b><a [routerLink]="['/producers',transaction.trx_vote.to]">{{transaction.trx_vote.to}}</a></b> <- <b>{{transaction.trx_vote.amt}}</b>
+          </td>
+          <td *ngIf="!transaction.trx_vote || !transaction.trx_vote.amt">
+            None
+          </td>
         </tr>
       </table>
     </mat-card-content>
