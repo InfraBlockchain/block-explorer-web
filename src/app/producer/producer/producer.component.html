@@ -6,7 +6,6 @@
 </mat-toolbar>
 <div *ngIf="producer$ | async as producer; else loading">
   <app-producer-information [producer]="producer" style="margin:10px;"></app-producer-information>
-  <!--<app-producer-nodes [location]="producer.location" style="margin:10px;"></app-producer-nodes>-->
   <mat-tab-group color="primary" dynamicHeight="true">
     <mat-tab>
       <ng-template mat-tab-label>
