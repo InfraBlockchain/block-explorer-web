@@ -15,6 +15,7 @@ export class ActionsComponent implements OnInit {
     'receiver',
     'authorization',
     'name',
+    'inline',
     'data'
   ];
 

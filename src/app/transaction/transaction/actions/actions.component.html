@@ -45,6 +45,12 @@
           <b>{{action.act.name}}</b>
         </td>
       </ng-container>
+      <ng-container matColumnDef="inline">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Inline' | translate }}</th>
+        <td mat-cell *matCellDef="let action">
+          <span *ngIf="action.parent && action.parent > 0">true</span>
+        </td>
+      </ng-container>
       <ng-container matColumnDef="data">
         <th mat-header-cell *matHeaderCellDef>{{ 'Data' | translate }}</th>
         <td mat-cell *matCellDef="let action">
