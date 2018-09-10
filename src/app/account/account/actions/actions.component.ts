@@ -12,14 +12,13 @@ export class ActionsComponent implements OnChanges {
   @Output() onLoadMore = new EventEmitter<number>();
   actionsColumns = [
     'blockNum',
-    'transactionId',
     'timestamp',
+    'transactionId',
     'global_seq',
-    'recv_seq',
-    'account',
-    'receiver',
+    'action_account_name',
     'authorization',
-    'name',
+    'receiver',
+    'recv_seq',
     'inline',
     'data'
   ];

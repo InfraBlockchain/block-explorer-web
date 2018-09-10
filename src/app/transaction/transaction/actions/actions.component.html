@@ -15,21 +15,16 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="global_seq">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Seq' | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'G.Seq' | translate }}</th>
         <td mat-cell *matCellDef="let action">
           {{action.receipt.global_sequence}}
         </td>
       </ng-container>
-      <ng-container matColumnDef="account">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Account' | translate }}</th>
+      <ng-container matColumnDef="action_account_name">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Action (Account/Name)' | translate }}</th>
         <td mat-cell *matCellDef="let action">
           <a [routerLink]="['/accounts',action.act.account]">{{action.act.account}}</a>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="receiver">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Receiver' | translate }}</th>
-        <td mat-cell *matCellDef="let action">
-          <a [routerLink]="['/accounts',action.receipt.receiver]">{{action.receipt.receiver}}</a>
+          / <b>{{action.act.name}}</b>
         </td>
       </ng-container>
       <ng-container matColumnDef="authorization">
@@ -40,10 +35,10 @@
         </span>
         </td>
       </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Name' | translate }}</th>
+      <ng-container matColumnDef="receiver">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Receiver' | translate }}</th>
         <td mat-cell *matCellDef="let action">
-          <b>{{action.act.name}}</b>
+          <a [routerLink]="['/accounts',action.receipt.receiver]">{{action.receipt.receiver}}</a>
         </td>
       </ng-container>
       <ng-container matColumnDef="inline">

@@ -11,10 +11,9 @@ export class ActionsComponent implements OnInit {
   actionsColumns = [
     'index',
     'global_seq',
-    'account',
-    'receiver',
+    'action_account_name',
     'authorization',
-    'name',
+    'receiver',
     'inline',
     'data'
   ];
