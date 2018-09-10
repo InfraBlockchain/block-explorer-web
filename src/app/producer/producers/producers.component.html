@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <h1 class="mat-headline">
+    {{ 'Producers' | translate }}
+  </h1>
+</mat-toolbar>
+<div style="margin:10px;">
+  <app-table [dataSource]="producers$ | async" [enablePager]="false">
+    <table mat-table [dataSource]="producers$ | async">
+      <ng-container *ngIf="columnHeaders$ | async as columnHeaders">
+        <tr mat-header-row *matHeaderRowDef="columnHeaders"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnHeaders;"></tr>
+      </ng-container>
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let producer">
+          {{producer.position}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="owner">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Name' | translate }}</th>
+        <td mat-cell *matCellDef="let producer">
+          <a [routerLink]="['/producers',producer.owner]">{{producer.owner}}</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Url' | translate }}</th>
+        <td mat-cell *matCellDef="let producer">
+          <a href="{{producer.url}}">{{producer.url}}</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="numVotes">
+        <th mat-header-cell *matHeaderCellDef>{{ 'PoT Votes (Weighted)' | translate }}</th>
+        <td mat-cell *matCellDef="let producer">
+          {{producer.totalVotesWeight | number}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="votes">
+        <th mat-header-cell *matHeaderCellDef>{{ '%Votes' | translate }}</th>
+        <td mat-cell *matCellDef="let producer">
+          {{producer.votes}}
+          <span *ngIf="producer.votes">%</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Active' | translate }}</th>
+        <td mat-cell *matCellDef="let producer">
+          <span *ngIf="producer.is_active">active</span>
+          <span *ngIf="!producer.is_active">deactivated</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="authorized">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Authorized' | translate }}</th>
+        <td mat-cell *matCellDef="let producer">
+          <span *ngIf="producer.is_trusted_seed">authorized</span>
+          <span *ngIf="!producer.is_trusted_seed">unauthorized</span>
+        </td>
+      </ng-container>
+    </table>
+  </app-table>
+</div>
