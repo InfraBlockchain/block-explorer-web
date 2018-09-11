@@ -18,7 +18,7 @@ export class TransactionService {
   ) { }
 
   getTransaction(id: string): Observable<Result<TransactionDetail>> {
-    return this.http.get(`${environment.apiUrl}/transactions/${id}`).pipe(
+    return this.http.get(`${environment.apiUrl}/transaction/${id}`).pipe(
       map(transaction => {
         return <Result<TransactionDetail>>{
           isError: false,
@@ -43,7 +43,7 @@ export class TransactionService {
   }
 
   getTransactionActions(id: string, page = 1): Observable<Action[]> {
-    return this.http.get(`${environment.apiUrl}/transactions/${id}/actions`, {
+    return this.http.get(`${environment.apiUrl}/transaction/${id}/actions`, {
       params: new HttpParams({
         fromString: `page=${page}`
       })

@@ -13,7 +13,7 @@ export class ActionService {
   ) { }
 
   getActionsForAccount(account: string, start_seq: number, offset: number): Observable<Action[]> {
-    return this.http.get(`${environment.apiUrl}/actions/account/${account}`, {
+    return this.http.get(`${environment.apiUrl}/account/${account}/actions`, {
       params: new HttpParams({
         fromString: `start=${start_seq}&offset=${offset}`
       })
@@ -23,13 +23,13 @@ export class ActionService {
   }
 
   getAction(id: string): Observable<Action> {
-    return this.http.get(`${environment.apiUrl}/actions/${id}`).pipe(
+    return this.http.get(`${environment.apiUrl}/action/${id}`).pipe(
       map(action => action as Action)
     );
   }
 
   getActionSeq(trxId: string, seq = 0, parentId = 0): Observable<Action> {
-    return this.http.get(`${environment.apiUrl}/transactions/${trxId}/actions/${seq}?parentId=${parentId}`).pipe(
+    return this.http.get(`${environment.apiUrl}/transaction/${trxId}/actions/${seq}?parentId=${parentId}`).pipe(
       map(action => action as Action)
     );
   }

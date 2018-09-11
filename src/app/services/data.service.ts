@@ -67,7 +67,7 @@ export class DataService {
   }
 
   getTransactionActions(transaction: Transaction, paging = { index: 1, limit: 100 }): Observable<Action[]> {
-    return this.http.get(`${environment.apiUrl}/transactions/${transaction.id}/actions`, {
+    return this.http.get(`${environment.apiUrl}/transaction/${transaction.id}/actions`, {
       params: new HttpParams({
         fromString: `page=${paging.index}&size=${paging.limit}`
       })

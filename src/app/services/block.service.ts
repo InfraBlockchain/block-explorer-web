@@ -18,7 +18,7 @@ export class BlockService {
   ) { }
 
   getBlock(blockNum: number): Observable<Result<BlockDetail>> {
-    return this.http.get(`${environment.apiUrl}/blocks/${blockNum}`).pipe(
+    return this.http.get(`${environment.apiUrl}/block/${blockNum}`).pipe(
       map(block => {
         return <Result<BlockDetail>>{
           isError: false,
@@ -40,7 +40,7 @@ export class BlockService {
   }
 
   getBlockById(blockId: string): Observable<Result<BlockDetail>> {
-    return this.http.get(`${environment.apiUrl}/blocks/id/${blockId}`).pipe(
+    return this.http.get(`${environment.apiUrl}/block/id/${blockId}`).pipe(
       map(block => {
         return <Result<BlockDetail>>{
           isError: false,
@@ -68,7 +68,7 @@ export class BlockService {
   }
 
   getBlockTransactions(id: number, page = 1): Observable<Transaction[]> {
-    return this.http.get(`${environment.apiUrl}/blocks/${id}/transactions`, {
+    return this.http.get(`${environment.apiUrl}/block/${id}/transactions`, {
       params: new HttpParams({
         fromString: `page=${page}`
       })
