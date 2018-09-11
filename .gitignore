@@ -46,3 +46,9 @@ testem.log
 Thumbs.db
 
 /package-lock.json
+
+# deploy
+PROD_S3_AWS_ACCESS_KEY_ID
+PROD_S3_AWS_SECRET_ACCESS_KEY
+DEV_S3_AWS_ACCESS_KEY_ID
+DEV_S3_AWS_SECRET_ACCESS_KEY
