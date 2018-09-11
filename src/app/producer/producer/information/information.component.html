@@ -22,9 +22,9 @@
         </td>
       </tr>
       <tr>
-        <td>{{ 'Public Key' | translate }}:</td>
+        <td>{{ 'Producer Key' | translate }}:</td>
         <td fxLayout="row" fxLayoutAlign="start center">{{producer.producer_key}}
-          <mat-icon *ngIf="producer.validated">verified_user</mat-icon>
+          <mat-icon *ngIf="producer.is_trusted_seed">verified_user</mat-icon>
         </td>
       </tr>
       <tr>

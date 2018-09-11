@@ -27,11 +27,6 @@ export class SidenavComponent implements OnInit {
         link: '/',
         name: this.translate.instant('Dashboard')
       },
-      {
-        icon: 'verified_user', // 'check_circle',
-        link: '/producers',
-        name: this.translate.instant('Block Producers')
-      },
       // {
       //   icon: 'people',
       //   link: '/accounts',
@@ -46,6 +41,11 @@ export class SidenavComponent implements OnInit {
         icon: 'fingerprint', // 'list_alt',
         link: '/transactions',
         name: this.translate.instant('Transactions')
+      },
+      {
+        icon: 'verified_user', // 'check_circle',
+        link: '/producers',
+        name: this.translate.instant('Block Producers')
       }
       // {
       //   icon: 'list',
