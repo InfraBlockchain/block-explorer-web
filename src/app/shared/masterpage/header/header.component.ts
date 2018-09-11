@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   logoUrl = environment.logoUrl;
   appName = environment.appName;
+  networkNmae = environment.networkName;
   searchExpanded = false;
 
   constructor() { }

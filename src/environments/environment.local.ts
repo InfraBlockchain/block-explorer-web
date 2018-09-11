@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  appName: 'YOSEMITE Blockchain Explorer (Local Test-Net)',
+  appName: 'YOSEMITE Blockchain Explorer',
+  networkName: 'Local Test-Net',
   logoUrl: '/assets/logo.png',
   apiUrl: 'http://localhost:9000',
   blockchainUrl: 'http://localhost:8888',

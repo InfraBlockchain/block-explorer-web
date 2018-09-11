@@ -4,8 +4,8 @@
       <mat-icon>menu</mat-icon>
     </button>
     <a class="brand" routerLink="/">
-      <img [src]="logoUrl" />
-      <b><span>{{ appName | translate }}</span></b>
+      <img style="margin-bottom: 5px;" [src]="logoUrl" />
+      <span class="mat-h2">{{ appName | translate }}</span> <span style="margin-left: 5px;">({{ networkNmae | translate}})</span>
     </a>
   </div>
   <!--<app-search (onSearchExpanded)="searchExpanded = $event" [ngClass]="searchExpanded ? 'search-expanded' : 'search-collapsed'"></app-search>-->

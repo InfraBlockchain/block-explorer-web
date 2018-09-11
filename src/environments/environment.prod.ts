@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  appName: 'YOSEMITE Explorer (Public Test-Net)',
+  appName: 'YOSEMITE Explorer',
+  networkName: 'Public Test-Net',
   logoUrl: '/assets/logo.png',
   apiUrl: 'http://testnet-explorer-api.yosemitelabs.org',
   blockchainUrl: 'http://testnet.yosemitelabs.org:8888',
