@@ -1,11 +1,9 @@
 export const environment = {
   production: true,
-  walletUrl: 'https://walleteos.com',
-  votingUrl: 'https://eosportal.io',
-  appName: 'YOSEMITE Explorer',
+  appName: 'YOSEMITE Explorer (Public Test-Net)',
   logoUrl: '/assets/logo.png',
-  apiUrl: 'http://localhost:9000',
-  blockchainUrl: 'http://localhost:8888',
-  chainId: '98e9e9f93d5865625c403b84d7ccb0dee22be45f082ed9741d43fdda0f7ad3d6',
+  apiUrl: 'http://testnet-explorer-api.yosemitelabs.org',
+  blockchainUrl: 'http://testnet.yosemitelabs.org:8888',
+  chainId: '6376573815dbd2de2d9929027a94aeab3f6e60e87caa953f94ee701ac8425811',
   useChain: false
 };
