@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title fxLayout="row" fxLayoutAlign="space-between center">
-    {{ 'Transactions' | translate }}
+    <span> <mat-icon style="vertical-align: text-top;">fingerprint</mat-icon> {{ 'Transactions' | translate }} </span>
     <a mat-stroked-button color="accent" [routerLink]="['/transactions']">{{ 'ViewAll' | translate }}</a>
   </mat-card-title>
   <mat-card-content>

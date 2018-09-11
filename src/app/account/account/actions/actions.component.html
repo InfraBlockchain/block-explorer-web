@@ -1,6 +1,6 @@
 <ng-container *ngIf="actions && actions.length; else loading">
   <!--<ng-container *ngIf="actions.length; else error">-->
-  <app-table [dataSource]="actions" [title]="'Actions' | translate" [enablePager]="false">
+  <app-table [dataSource]="actions" [enablePager]="false">
     <table mat-table [dataSource]="actions">
       <tr mat-header-row *matHeaderRowDef="actionsColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: actionsColumns;"></tr>

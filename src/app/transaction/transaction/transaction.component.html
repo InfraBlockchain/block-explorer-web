@@ -1,20 +1,20 @@
 <mat-toolbar color="primary">
   <h1 class="mat-headline">
-    {{ 'Transaction' | translate }}
+      <mat-icon style="vertical-align: text-bottom;">fingerprint</mat-icon> {{ 'Transaction' | translate }}
   </h1>
 </mat-toolbar>
 <ng-container *ngIf="transaction$ | async as transaction; else loading">
   <mat-tab-group color="primary" dynamicHeight="true" *ngIf="!transaction.isError; else error">
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon style="margin-right:5px;">info</mat-icon>
+        <mat-icon style="margin-right:5px;">description</mat-icon>
         {{ 'Transaction Information' | translate }}
       </ng-template>
       <app-transaction-information [transaction]="transaction.value"></app-transaction-information>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon style="margin-right:5px;">code</mat-icon>
+        <mat-icon style="margin-right:5px;">assignment</mat-icon>
         {{ 'Blockchain Raw Data' | translate }}
       </ng-template>
       <prettyjson [obj]="transaction.value"></prettyjson>
@@ -28,14 +28,14 @@
   <mat-tab-group color="primary" dynamicHeight="true" *ngIf="trxActions.length > 0; else error">
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon style="margin-right:5px;">info</mat-icon>
+        <mat-icon style="margin-right:5px;">assignment_turned_in</mat-icon>
         {{ 'Actions Processed' | translate }}
       </ng-template>
       <app-transaction-actions [transactionActions]="trxActions"></app-transaction-actions>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon style="margin-right:5px;">code</mat-icon>
+        <mat-icon style="margin-right:5px;">assignment</mat-icon>
         {{ 'Blockchain Raw Data' | translate }}
       </ng-template>
       <prettyjson [obj]="trxActions"></prettyjson>

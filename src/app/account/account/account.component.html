@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <h1 class="mat-headline">
-    {{ 'Account' | translate }} {{name$ | async}}
+    <mat-icon style="vertical-align: text-bottom;">account_balance_wallet</mat-icon> {{ 'Account' | translate }} / {{name$ | async}}
   </h1>
 </mat-toolbar>
 <ng-container *ngIf="account$ | async as account; else loading">
@@ -9,21 +9,21 @@
     <mat-tab-group color="primary" dynamicHeight="true">
       <mat-tab>
         <ng-template mat-tab-label>
-          <mat-icon style="margin-right:5px;">list</mat-icon>
+          <mat-icon style="margin-right:5px;">assignment_turned_in</mat-icon>
           {{ 'Received Actions' | translate }}
         </ng-template>
         <app-account-actions [actions]="accountActions$ | async" [newActions]="accountNewActions$ | async" (onLoadMore)="loadMore($event)"></app-account-actions>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
-          <mat-icon style="margin-right:5px;">code</mat-icon>
+          <mat-icon style="margin-right:5px;">assignment</mat-icon>
           {{ 'BlockchainRawData' | translate }}
         </ng-template>
         <prettyjson [obj]="account.value"></prettyjson>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
-          <mat-icon style="margin-right:5px;">code</mat-icon>
+          <mat-icon style="margin-right:5px;">assignment</mat-icon>
           {{ 'Contract ABI' | translate }}
         </ng-template>
         <ng-template matTabContent>
