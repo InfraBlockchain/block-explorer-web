@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Action } from '../../../models';
 
 @Component({
   selector: 'app-account-actions',
@@ -7,7 +8,8 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
 })
 export class ActionsComponent implements OnChanges {
 
-  @Input() actions;
+  actions: Action[] = [];
+  lastIrreversibleBlockNum = 0;
   @Input() newActions;
   @Output() onLoadMore = new EventEmitter<number>();
   actionsColumns = [
@@ -27,12 +29,13 @@ export class ActionsComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    if (this.newActions && this.newActions.length > 0) {
-      this.actions = this.actions.concat(this.newActions);
-      this.newActions = null;
-    }
-    if (this.actions && this.actions.length > 0) {
+    if (this.newActions && this.newActions.actions && this.newActions.actions.length > 0) {
+      if (this.newActions.lastIrrBlkNum && this.newActions.lastIrrBlkNum > 0) {
+        this.lastIrreversibleBlockNum = this.newActions.lastIrrBlkNum;
+      }
+      this.actions = this.actions.concat(this.newActions.actions);
       this.accountActionSequence = this.actions[this.actions.length - 1].receipt.recv_sequence;
+      this.newActions = null;
     }
   }
 

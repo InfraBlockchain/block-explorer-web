@@ -6,6 +6,7 @@ import { Action, Result } from '../../models';
 import { Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ActionService } from '../../services/action.service';
+import { ActionsForAccount } from '../../models/ActionsForAccount';
 
 @Component({
   templateUrl: './account.component.html',
@@ -15,8 +16,7 @@ export class AccountComponent implements OnInit {
 
   name$: Observable<string>;
   account$: Observable<Result<any>>;
-  accountActions$: Observable<Action[]>;
-  accountNewActions$: Observable<Action[]>;
+  accountNewActions$: Observable<ActionsForAccount>;
   accountAbi$: Observable<Result<any>>;
   actionsLoadSize = 20;
 
@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
       switchMap(name => this.eosService.getAccountRaw(name)),
       tap(account => console.log('account', account))
     );
-    this.accountActions$ = this.name$.pipe(
+    this.accountNewActions$ = this.name$.pipe(
       switchMap(name => this.actionService.getActionsForAccount(name, -1, -this.actionsLoadSize))
     );
     this.accountAbi$ = this.name$.pipe(
