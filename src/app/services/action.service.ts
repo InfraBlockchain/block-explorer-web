@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Action } from '../models/Action';
+import { ActionsForAccount } from '../models/ActionsForAccount';
 
 @Injectable()
 export class ActionService {
@@ -12,13 +13,13 @@ export class ActionService {
     private http: HttpClient
   ) { }
 
-  getActionsForAccount(account: string, start_seq: number, offset: number): Observable<Action[]> {
+  getActionsForAccount(account: string, start_seq: number, offset: number): Observable<ActionsForAccount> {
     return this.http.get(`${environment.apiUrl}/account/${account}/actions`, {
       params: new HttpParams({
         fromString: `start=${start_seq}&offset=${offset}`
       })
     }).pipe(
-      map((actions: any) => actions.map(action => action as Action))
+      map(actions => actions as ActionsForAccount )
     );
   }
 
