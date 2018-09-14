@@ -4,9 +4,8 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Block, Transaction, Result } from '../models';
-// import { EosService } from './eos.service';
-import {BlockDetail} from '../models/BlockDetail';
-import {LoggerService} from './logger.service';
+import { BlockDetail } from '../models/BlockDetail';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class BlockService {
@@ -14,7 +13,6 @@ export class BlockService {
   constructor(
     private http: HttpClient,
     private logger: LoggerService
-    // private eosService: EosService
   ) { }
 
   getBlock(blockNum: number): Observable<Result<BlockDetail>> {
@@ -25,10 +23,6 @@ export class BlockService {
           value: block as BlockDetail
         };
       }),
-      // catchError(error => {
-      //   console.log('TODO: API Error', error);
-      //   return this.eosService.getBlock(id);
-      // })
       catchError(error => {
         this.logger.error('API_ERROR', error);
         return of({
