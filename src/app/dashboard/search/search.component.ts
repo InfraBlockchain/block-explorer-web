@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
       switchMap(query => this.tryTransaction(query)),
       switchMap(query => this.tryBlockId(query)),
       switchMap(query => this.tryAccount(query)),
-      switchMap(query => this.tryAccountKey(query)),
+      switchMap(query => this.tryAccountByPubKey(query)),
       tap(query => console.log('no result', query))
     );
   }
@@ -104,13 +104,13 @@ export class SearchComponent implements OnInit {
     return of(query);
   }
 
-  private tryAccountKey(query: string): Observable<string> {
+  private tryAccountByPubKey(query: string): Observable<string> {
     if (query.length === 53) {
-      return this.accountService.getAccountKey(query).pipe(
+      return this.accountService.getAccountPermissionsByPubKey(query).pipe(
         catchError(() => of(null)),
         switchMap(data => {
-          if (data && data.name) {
-            this.router.navigate(['/accounts', data.name], { replaceUrl: true });
+          if (data && data.length > 0 && data[0].account) {
+            this.router.navigate(['/accounts', data[0].account], { replaceUrl: true });
             return EMPTY;
           }
           return of(query);
