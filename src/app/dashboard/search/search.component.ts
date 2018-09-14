@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of, empty } from 'rxjs';
+import { Observable, of, empty, EMPTY } from 'rxjs';
 import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { TransactionService } from '../../services/transaction.service';
 import { BlockService } from '../../services/block.service';
@@ -26,27 +26,27 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.query$ = this.route.queryParams.pipe(
-      map(queryParams => queryParams.q)
+      map(queryParams => queryParams.q.trim())
     );
     this.result$ = this.query$.pipe(
       switchMap(query => this.tryBlockNumber(query)),
       switchMap(query => this.tryTransaction(query)),
       switchMap(query => this.tryBlockId(query)),
-      switchMap(query => this.tryAccountKey(query)),
       switchMap(query => this.tryAccount(query)),
+      switchMap(query => this.tryAccountKey(query)),
       tap(query => console.log('no result', query))
     );
   }
 
   private tryBlockNumber(query: string): Observable<string> {
     const blockNumber = Number(query);
-    if (!isNaN(blockNumber)) {
+    if (!isNaN(blockNumber) && blockNumber > 0) {
       return this.blockService.getBlock(blockNumber).pipe(
         catchError(() => of(null)),
         switchMap(data => {
-          if (data) {
+          if (data && !data.isError) {
             this.router.navigate(['/blocks', blockNumber], { replaceUrl: true });
-            return empty();
+            return EMPTY;
           }
           return of(query);
         })
@@ -62,7 +62,7 @@ export class SearchComponent implements OnInit {
         switchMap(data => {
           if (data && !data.isError) {
             this.router.navigate(['/transactions', query], { replaceUrl: true });
-            return empty();
+            return EMPTY;
           }
           return of(query);
         })
@@ -76,9 +76,26 @@ export class SearchComponent implements OnInit {
       return this.blockService.getBlockById(query).pipe(
         catchError(() => of(null)),
         switchMap(data => {
-          if (data) {
-            this.router.navigate(['/blocks', data['blockNumber']], { replaceUrl: true });
-            return empty();
+          if (data && !data.isError) {
+            console.log(data);
+            this.router.navigate(['/blocks', data.value.block_num], { replaceUrl: true });
+            return EMPTY;
+          }
+          return of(query);
+        })
+      );
+    }
+    return of(query);
+  }
+
+  private tryAccount(query: string): Observable<string> {
+    if (query.length <= 12) {
+      return this.accountService.getAccountByName(query).pipe(
+        catchError(() => of(null)),
+        switchMap(data => {
+          if (data && data.name) {
+            this.router.navigate(['/accounts', data.name], { replaceUrl: true });
+            return EMPTY;
           }
           return of(query);
         })
@@ -92,25 +109,9 @@ export class SearchComponent implements OnInit {
       return this.accountService.getAccountKey(query).pipe(
         catchError(() => of(null)),
         switchMap(data => {
-          if (data) {
-            this.router.navigate(['/accounts', data['name']], { replaceUrl: true });
-            return empty();
-          }
-          return of(query);
-        })
-      );
-    }
-    return of(query);
-  }
-
-  private tryAccount(query: string): Observable<string> {
-    if (query.length <= 12) {
-      return this.accountService.getAccount(query).pipe(
-        catchError(() => of(null)),
-        switchMap(data => {
-          if (data) {
-            this.router.navigate(['/accounts', data['name']], { replaceUrl: true });
-            return empty();
+          if (data && data.name) {
+            this.router.navigate(['/accounts', data.name], { replaceUrl: true });
+            return EMPTY;
           }
           return of(query);
         })

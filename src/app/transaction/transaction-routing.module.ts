@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: ':blockId/:id',
     component: TransactionComponent
+  },
+  {
+    path: ':id',
+    component: TransactionComponent
   }
 ];
 

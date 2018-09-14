@@ -18,13 +18,11 @@ export class TransactionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private eosService: EosService
     private transactionService: TransactionService
   ) { }
 
   ngOnInit() {
     this.transaction$ = this.route.params.pipe(
-      // switchMap(params => this.eosService.getTransactionRaw(+params.blockId, params.id))
       switchMap(params => this.transactionService.getTransaction(params.id))
     );
     this.transactionActions$ = this.route.params.pipe(
