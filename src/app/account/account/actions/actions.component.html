@@ -1,4 +1,4 @@
-<ng-container *ngIf="actions && actions.length; else loading">
+<ng-container *ngIf="isLoaded; else loading">
   <!--<ng-container *ngIf="actions.length; else error">-->
   <app-table [dataSource]="actions" [enablePager]="false">
     <table mat-table [dataSource]="actions">

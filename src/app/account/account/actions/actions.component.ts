@@ -8,6 +8,7 @@ import { Action } from '../../../models';
 })
 export class ActionsComponent implements OnChanges {
 
+  isLoaded = false;
   actions: Action[] = [];
   lastIrreversibleBlockNum = 0;
   @Input() newActions;
@@ -29,12 +30,15 @@ export class ActionsComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    if (this.newActions && this.newActions.actions && this.newActions.actions.length > 0) {
-      if (this.newActions.lastIrrBlkNum && this.newActions.lastIrrBlkNum > 0) {
-        this.lastIrreversibleBlockNum = this.newActions.lastIrrBlkNum;
+    if (this.newActions && this.newActions.lastIrrBlkNum && this.newActions.lastIrrBlkNum > 0) {
+      this.isLoaded = true;
+      this.lastIrreversibleBlockNum = this.newActions.lastIrrBlkNum;
+
+      if (this.newActions.actions && this.newActions.actions.length > 0) {
+        this.actions = this.actions.concat(this.newActions.actions);
+        this.accountActionSequence = this.actions[this.actions.length - 1].receipt.recv_sequence;
       }
-      this.actions = this.actions.concat(this.newActions.actions);
-      this.accountActionSequence = this.actions[this.actions.length - 1].receipt.recv_sequence;
+
       this.newActions = null;
     }
   }

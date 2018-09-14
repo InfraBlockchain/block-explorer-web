@@ -32,8 +32,8 @@ export class AccountComponent implements OnInit {
       map(params => params.id)
     );
     this.account$ = this.name$.pipe(
-      switchMap(name => this.eosService.getAccountRaw(name)),
-      tap(account => console.log('account', account))
+      switchMap(name => this.eosService.getAccountRaw(name))
+      // tap(account => console.log('account', account))
     );
     this.accountNewActions$ = this.name$.pipe(
       switchMap(name => this.actionService.getActionsForAccount(name, -1, -this.actionsLoadSize))
