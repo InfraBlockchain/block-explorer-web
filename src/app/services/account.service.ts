@@ -14,8 +14,8 @@ export class AccountService {
     private eosService: EosService
   ) { }
 
-  getAccount(name: string): Observable<Account> {
-    return this.http.get(`${environment.apiUrl}/accounts/${name}`).pipe(
+  getAccountByName(name: string): Observable<Account> {
+    return this.http.get(`${environment.apiUrl}/account/${name}`).pipe(
       map(account => account as Account)
     );
   }
