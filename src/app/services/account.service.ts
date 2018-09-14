@@ -5,6 +5,7 @@ import { map, switchMap, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Account, Action, Token } from '../models';
 import { EosService } from './eos.service';
+import {AccountPermission} from '../models/AccountPermission';
 
 @Injectable()
 export class AccountService {
@@ -20,9 +21,9 @@ export class AccountService {
     );
   }
 
-  getAccountKey(key: string): Observable<Account> {
-    return this.http.get(`${environment.apiUrl}/accounts/key/${key}`).pipe(
-      map(account => account as Account)
+  getAccountPermissionsByPubKey(key: string): Observable<AccountPermission[]> {
+    return this.http.get(`${environment.apiUrl}/pubkey/${key}/permissions`).pipe(
+      map((permissions: any) => permissions.map(permission => permission as AccountPermission))
     );
   }
 
