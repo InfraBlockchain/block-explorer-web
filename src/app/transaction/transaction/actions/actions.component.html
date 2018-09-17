@@ -31,7 +31,7 @@
         <th mat-header-cell *matHeaderCellDef>{{ 'Authorizations' | translate }}</th>
         <td mat-cell *matCellDef="let action">
         <span *ngFor="let auth of action.act.authorization">
-          {{auth.actor}}@{{auth.permission}}
+          <a [routerLink]="['/accounts',auth.actor]">{{auth.actor}}</a>@{{auth.permission}}
         </span>
         </td>
       </ng-container>
