@@ -13,10 +13,20 @@ export class ActionService {
     private http: HttpClient
   ) { }
 
-  getActionsForAccount(account: string, start_seq: number, offset: number): Observable<ActionsForAccount> {
-    return this.http.get(`${environment.apiUrl}/account/${account}/actions`, {
+  getReceivedActionsByAccount(account: string, start_recv_seq: number, offset: number): Observable<ActionsForAccount> {
+    return this.http.get(`${environment.apiUrl}/account/${account}/actions/received`, {
       params: new HttpParams({
-        fromString: `start=${start_seq}&offset=${offset}`
+        fromString: `start=${start_recv_seq}&offset=${offset}`
+      })
+    }).pipe(
+      map(actions => actions as ActionsForAccount )
+    );
+  }
+
+  getSentActionsByAccount(account: string, start_global_seq: number, offset: number): Observable<ActionsForAccount> {
+    return this.http.get(`${environment.apiUrl}/account/${account}/actions/sent`, {
+      params: new HttpParams({
+        fromString: `start=${start_global_seq}&offset=${offset}`
       })
     }).pipe(
       map(actions => actions as ActionsForAccount )
