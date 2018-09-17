@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EosService } from '../../services/eos.service';
 import { AppService } from '../../services/app.service';
 import { Action, Result } from '../../models';
-import { Observable } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ActionService } from '../../services/action.service';
 import { ActionsForAccount } from '../../models/ActionsForAccount';
@@ -14,6 +14,7 @@ import { ActionsForAccount } from '../../models/ActionsForAccount';
 })
 export class AccountComponent implements OnInit {
 
+  reloadEventSubject: Subject<void> = new Subject<void>();
   name$: Observable<string>;
   account$: Observable<Result<any>>;
   accountNewReceivedActions$: Observable<ActionsForAccount>;
@@ -34,13 +35,15 @@ export class AccountComponent implements OnInit {
     );
     this.account$ = this.name$.pipe(
       switchMap(name => this.eosService.getAccountRaw(name))
-      // tap(account => console.log('account', account))
+      , tap(account => this.reloadEventSubject.next() )
     );
     this.accountNewReceivedActions$ = this.name$.pipe(
       switchMap(name => this.actionService.getReceivedActionsByAccount(name, -1, -this.actionsLoadSize))
+      // , tap(a => console.log('accountNewReceivedActions$'))
     );
     this.accountNewSentActions$ = this.name$.pipe(
       switchMap(name => this.actionService.getSentActionsByAccount(name, -1, -this.actionsLoadSize))
+      // , tap(a => console.log('accountNewSentActions$'))
     );
     this.accountAbi$ = this.name$.pipe(
       switchMap(name => this.eosService.getAbi(name))

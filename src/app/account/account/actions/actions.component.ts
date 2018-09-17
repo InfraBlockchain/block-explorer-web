@@ -1,12 +1,16 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Action } from '../../../models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account-actions',
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss']
 })
-export class ActionsComponent implements OnChanges {
+export class ActionsComponent implements OnInit, OnDestroy, OnChanges {
+
+  reloadEventSubscription: any
+  @Input() reloadEvent: Observable<void>;
 
   @Input() actionType: string; // "sent" or "received"
   @Input() pageSize: number;
@@ -31,6 +35,21 @@ export class ActionsComponent implements OnChanges {
   accountActionSequence = 0;
 
   constructor() { }
+
+  ngOnInit() {
+    this.reloadEventSubscription = this.reloadEvent.subscribe(() => this.reload() );
+  }
+
+  ngOnDestroy() {
+    this.reloadEventSubscription.unsubscribe();
+  }
+
+  reload() {
+    this.actions = []
+    this.lastIrreversibleBlockNum = 0;
+    this.lastLoadedActionCount = 0;
+    this.isLoaded = false;
+  }
 
   ngOnChanges() {
     if (this.newActions && this.newActions.lastIrrBlkNum && this.newActions.lastIrrBlkNum > 0) {
