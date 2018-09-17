@@ -16,7 +16,8 @@ export class AccountComponent implements OnInit {
 
   name$: Observable<string>;
   account$: Observable<Result<any>>;
-  accountNewActions$: Observable<ActionsForAccount>;
+  accountNewReceivedActions$: Observable<ActionsForAccount>;
+  accountNewSentActions$: Observable<ActionsForAccount>;
   accountAbi$: Observable<Result<any>>;
   actionsLoadSize = 20;
 
@@ -35,17 +36,26 @@ export class AccountComponent implements OnInit {
       switchMap(name => this.eosService.getAccountRaw(name))
       // tap(account => console.log('account', account))
     );
-    this.accountNewActions$ = this.name$.pipe(
-      switchMap(name => this.actionService.getActionsForAccount(name, -1, -this.actionsLoadSize))
+    this.accountNewReceivedActions$ = this.name$.pipe(
+      switchMap(name => this.actionService.getReceivedActionsByAccount(name, -1, -this.actionsLoadSize))
+    );
+    this.accountNewSentActions$ = this.name$.pipe(
+      switchMap(name => this.actionService.getSentActionsByAccount(name, -1, -this.actionsLoadSize))
     );
     this.accountAbi$ = this.name$.pipe(
       switchMap(name => this.eosService.getAbi(name))
     );
   }
 
-  loadMore(sequence) {
-    this.accountNewActions$ = this.name$.pipe(
-      switchMap(name => this.actionService.getActionsForAccount(name, sequence, -this.actionsLoadSize))
+  loadMoreReceivedActions(sequence) {
+    this.accountNewReceivedActions$ = this.name$.pipe(
+      switchMap(name => this.actionService.getReceivedActionsByAccount(name, sequence, -this.actionsLoadSize))
+    );
+  }
+
+  loadMoreSentActions(sequence) {
+    this.accountNewSentActions$ = this.name$.pipe(
+      switchMap(name => this.actionService.getSentActionsByAccount(name, sequence, -this.actionsLoadSize))
     );
   }
 

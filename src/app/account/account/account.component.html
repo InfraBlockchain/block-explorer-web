@@ -12,7 +12,14 @@
           <mat-icon style="margin-right:5px;">assignment_turned_in</mat-icon>
           {{ 'Received Actions' | translate }}
         </ng-template>
-        <app-account-actions [newActions]="accountNewActions$ | async" (onLoadMore)="loadMore($event)"></app-account-actions>
+        <app-account-actions [actionType]="'received'" [pageSize]="actionsLoadSize" [newActions]="accountNewReceivedActions$ | async" (onLoadMore)="loadMoreReceivedActions($event)"></app-account-actions>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon style="margin-right:5px;">assignment_turned_in</mat-icon>
+          {{ 'Sent Actions' | translate }}
+        </ng-template>
+        <app-account-actions [actionType]="'sent'" [pageSize]="actionsLoadSize" [newActions]="accountNewSentActions$ | async" (onLoadMore)="loadMoreSentActions($event)"></app-account-actions>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>

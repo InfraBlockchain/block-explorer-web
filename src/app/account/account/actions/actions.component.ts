@@ -8,9 +8,12 @@ import { Action } from '../../../models';
 })
 export class ActionsComponent implements OnChanges {
 
+  @Input() actionType: string; // "sent" or "received"
+  @Input() pageSize: number;
   isLoaded = false;
   actions: Action[] = [];
   lastIrreversibleBlockNum = 0;
+  lastLoadedActionCount = 0;
   @Input() newActions;
   @Output() onLoadMore = new EventEmitter<number>();
   actionsColumns = [
@@ -36,8 +39,13 @@ export class ActionsComponent implements OnChanges {
 
       if (this.newActions.actions && this.newActions.actions.length > 0) {
         this.actions = this.actions.concat(this.newActions.actions);
-        this.accountActionSequence = this.actions[this.actions.length - 1].receipt.recv_sequence;
+        if (this.actionType === 'received') {
+          this.accountActionSequence = this.actions[this.actions.length - 1].receipt.recv_sequence;
+        } else {
+          this.accountActionSequence = this.actions[this.actions.length - 1].receipt.global_sequence;
+        }
       }
+      this.lastLoadedActionCount = this.newActions.actions.length;
 
       this.newActions = null;
     }

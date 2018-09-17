@@ -72,7 +72,7 @@
       </ng-container>
     </table>
   </app-table>
-  <div style="padding:10px 0;" *ngIf="accountActionSequence > 1">
+  <div style="padding:10px 0;" *ngIf="pageSize <= lastLoadedActionCount && lastLoadedActionCount > 0 && accountActionSequence > 1">
     <button mat-raised-button color="accent" (click)="onLoadMore.emit(accountActionSequence)">Load More</button>
   </div>
   <!--</ng-container>-->
