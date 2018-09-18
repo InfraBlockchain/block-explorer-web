@@ -31,13 +31,6 @@ export class ProducersComponent implements OnInit {
     this.producers$ = this.chainStatus$.pipe(
       switchMap(chainStatus => this.eosService.getProducers().pipe(
         map(producers => {
-          const votesToRemove = producers.reduce((acc, cur) => {
-            const percentageVotes = cur.total_votes_weight / chainStatus.total_producer_vote_weight * 100;
-            if (percentageVotes * 200 < 100) {
-              acc += parseFloat(cur.total_votes_weight);
-            }
-            return acc;
-          }, 0);
           return producers.map((producer, index) => {
             const position = parseInt(index, 10) + 1;
             const percentageVotes = producer.total_votes_weight / chainStatus.total_producer_vote_weight * 100;
@@ -74,6 +67,7 @@ export const PRODUCERS_COLUMNS = [
   'url',
   'numVotes',
   'votes',
+  'location',
   'active',
   'authorized'
 ];
