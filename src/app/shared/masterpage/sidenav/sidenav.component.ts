@@ -46,6 +46,11 @@ export class SidenavComponent implements OnInit {
         icon: 'verified_user', // 'check_circle',
         link: '/producers',
         name: this.translate.instant('Block Producers')
+      },
+      {
+        icon: 'account_balance',
+        link: '/depositories',
+        name: this.translate.instant('Depositories')
       }
       // {
       //   icon: 'list',

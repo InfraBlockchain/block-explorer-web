@@ -254,4 +254,19 @@ export class EosService {
       map((result: any) => result.rows[0])
     );
   }
+
+  getDepositories() {
+    return from(this.eos.getTableRows({
+      json: true,
+      code: "yosemite",
+      scope: "yosemite",
+      table: "sysdepos",
+      limit: 100,
+      table_key: ""
+    })).pipe(
+      map((result: any) => {
+        return result.rows;
+      })
+    );
+  }
 }
