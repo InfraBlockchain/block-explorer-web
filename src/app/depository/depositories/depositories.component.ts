@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { EosService } from '../../services/eos.service';
 import { Depository } from '../../models/Depository';
-import { Observable, of, timer } from 'rxjs';
-import { map, share, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   templateUrl: './depositories.component.html',
@@ -21,7 +21,7 @@ export class DepositoriesComponent implements OnInit {
 
   ngOnInit() {
     this.columnHeaders$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
-      map(result => result.matches ? DEPOSITORIES_COLUMNS.filter((c: any) => (c !== 'url' && c !== 'position')) : DEPOSITORIES_COLUMNS)
+      map(result => result.matches ? DEPOSITORIES_COLUMNS.filter((c: any) => (c !== 'location' && c !== 'position')) : DEPOSITORIES_COLUMNS)
     );
     this.depositories$ = this.eosService.getDepositories().pipe(
       map(depositories => {

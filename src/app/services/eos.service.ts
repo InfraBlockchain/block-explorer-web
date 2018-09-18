@@ -269,4 +269,20 @@ export class EosService {
       })
     );
   }
+
+  getIdentityAuthorities() {
+    return from(this.eos.getTableRows({
+      json: true,
+      code: "yosemite",
+      scope: "yosemite",
+      table: "idauthority",
+      limit: 100,
+      table_key: ""
+    })).pipe(
+      map((result: any) => {
+        return result.rows;
+      })
+    );
+  }
+
 }
