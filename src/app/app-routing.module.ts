@@ -19,6 +19,7 @@ const appRoutes: Routes = [
       { path: 'producers', loadChildren: './producer/producer.module#ProducerModule' },
       { path: 'depositories', loadChildren: './depository/depository.module#DepositoryModule' },
       { path: 'idauthorities', loadChildren: './idauth/idauth.module#IdentityAuthorityModule' },
+      { path: 'txfee', loadChildren: './txfee/txfee.module#TxFeeModule' }
       // { path: 'actions', loadChildren: './contract/contract.module#ContractModule' },
     ]
   }

@@ -285,4 +285,19 @@ export class EosService {
     );
   }
 
+  getTransactionFees() {
+    return from(this.eos.getTableRows({
+      json: true,
+      code: "yx.txfee",
+      scope: "yx.txfee",
+      table: "txfees",
+      limit: 200,
+      table_key: ""
+    })).pipe(
+      map((result: any) => {
+        return result.rows;
+      })
+    );
+  }
+
 }

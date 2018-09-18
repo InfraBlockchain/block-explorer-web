@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+  <h1 class="mat-headline">
+      <mat-icon style="vertical-align: text-bottom;">payment</mat-icon> {{ 'Transaction Fee' | translate }}
+  </h1>
+</mat-toolbar>
+<div style="margin:10px;">
+  <mat-card>
+    <mat-card-title>
+      <mat-icon style="vertical-align: text-top;">description</mat-icon>
+      {{ 'Transaction Fee Pool Account' | translate }}
+    </mat-card-title>
+    <mat-card-content class="table-container">
+      <table>
+        <tr>
+          <td>{{ 'Account Name' | translate }}:</td>
+          <td>
+            <b><a [routerLink]="['/accounts',txfeeAccount]">{{txfeeAccount}}</a></b>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div style="margin:10px;">
+  <mat-card>
+    <mat-card-title>
+      <mat-icon style="vertical-align: text-top;">description</mat-icon>
+      {{ 'Transaction Fees for System Operations' | translate }}
+    </mat-card-title>
+    <mat-card-content class="table-container">
+      <app-table [dataSource]="txfees$ | async" [enablePager]="false">
+        <table mat-table [dataSource]="txfees$ | async">
+          <tr mat-header-row *matHeaderRowDef="txfeeColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: txfeeColumns;"></tr>
+          <ng-container matColumnDef="operation">
+            <th mat-header-cell *matHeaderCellDef>{{ 'Operation Code' | translate }}</th>
+            <td mat-cell *matCellDef="let txfee">
+              <b>{{txfee.operation}}</b>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>{{ 'Name' | translate }}</th>
+            <td mat-cell *matCellDef="let txfee">
+              {{txfee.operationName}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>{{ 'Action' | translate }}</th>
+            <td mat-cell *matCellDef="let txfee">
+              <a [routerLink]="['/accounts',txfee.actionAccount]">{{txfee.actionAccount}}</a>
+              / <b>{{txfee.actionName}}</b>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="fee">
+            <th mat-header-cell *matHeaderCellDef>{{ 'Tx Fee' | translate }}</th>
+            <td mat-cell *matCellDef="let txfee">
+              <b>{{txfee.feeStr}}</b>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="note">
+            <th mat-header-cell *matHeaderCellDef>{{ 'Note' | translate }}</th>
+            <td mat-cell *matCellDef="let txfee">
+              {{txfee.note}}
+            </td>
+          </ng-container>
+        </table>
+      </app-table>
+    </mat-card-content>
+  </mat-card>
+</div>

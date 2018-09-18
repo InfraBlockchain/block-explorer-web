@@ -56,6 +56,11 @@ export class SidenavComponent implements OnInit {
         icon: 'how_to_reg',
         link: '/idauthorities',
         name: this.translate.instant('ID Authorities')
+      },
+      {
+        icon: 'payment',
+        link: '/txfee',
+        name: this.translate.instant('Tx Fee')
       }
       // {
       //   icon: 'list',
