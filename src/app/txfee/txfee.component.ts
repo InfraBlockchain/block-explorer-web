@@ -44,7 +44,7 @@ export class TxFeeComponent implements OnInit {
             actionName = opMeta.actName;
             note = opMeta.note;
           }
-          const feeStr = (txfee.fee / trxfeemeta.precisionScale).toFixed(4) + ' ' + trxfeemeta.symbol;
+          const feeStr = (txfee.fee / trxfeemeta.precisionScale).toFixed(2) + ' ' + trxfeemeta.symbol;
           return {
             position: position,
             operationName: operationName,

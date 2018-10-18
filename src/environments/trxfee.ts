@@ -1,6 +1,6 @@
 export const trxfeemeta = {
   symbol: 'DKRW',
-  precisionScale: 10000,
+  precisionScale: 100,
   txfeeAccount: 'yx.txfee',
   operations: {
     'tf.newacc': {
