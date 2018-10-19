@@ -1,5 +1,16 @@
 export interface TransactionDetail {
-  trx_id: string;
+  id: string;
+  block_num: number; // block-number
+  block_time: string; // iso timestamp string
+  producer_block_id: string;
+  receipt: any;
+  elapsed: number;
+  net_usage: number;
+  scheduled: boolean;
+  action_traces: any[];
+  trx_vote?: any;
+  except?: any;
+  BN?: number;
   expiration: string;
   ref_block_num: number;
   ref_block_prefix: number;
@@ -14,14 +25,6 @@ export interface TransactionDetail {
   signing_keys: any;
   accepted: boolean;
   implicit: boolean;
-  scheduled: boolean;
+  block_id: string;
   irrAt: any; // irreversible-at : ("irrAt" / "$date") -> timestamp millis
-  bId: string; // block-id
-  bNum: number; // block-number
-  bTime: any; // block-time : : ("bTime" / "$date") -> timestamp millis
-  receipt: any;
-  elapsed: number;
-  net_usage: number;
-  action_traces: any[];
-  trx_vote?: any;
 }

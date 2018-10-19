@@ -97,21 +97,6 @@ export class DataService {
         if (actions.length < transaction.numActions) {
           throw ('API actions.length < transaction.numActions');
         }
-      }),
-      catchError(err => {
-        return this.eosService.getTransactionHistory(transaction.id, transaction.blockNum).pipe(
-          map((transaction: any) => transaction.trx.trx.actions),
-          map((actions: any) => actions.map((action, index) => {
-            return {
-              ...action,
-              authorizations: action.authorization,
-              parentId: 0,
-              seq: index,
-              blockNum: transaction.blockNum,
-              transaction: transaction.id
-            };
-          }))
-        );
       })
     );
   }

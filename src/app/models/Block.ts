@@ -11,8 +11,7 @@ export interface Block {
   trxVotes: number;
   prevBlockId: string;
   producer: string;
-  timestamp: number;
-  timestampISO: string;
+  blockTime: string;
   transactionMerkleRoot: string;
   version: number;
   transactions?: Transaction[];

@@ -21,7 +21,7 @@
         <ng-container matColumnDef="timestamp">
           <th mat-header-cell *matHeaderCellDef>{{ 'Time' | translate }}</th>
           <td mat-cell *matCellDef="let transaction">
-            {{transaction.timestamp | date:'MMM d, y, h:mm:ss.SSS a'}}
+            {{transaction.blockTime | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}
           </td>
         </ng-container>
         <ng-container matColumnDef="numActions">

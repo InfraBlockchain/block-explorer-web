@@ -9,12 +9,12 @@
         <tr>
           <td>{{ 'Block Number' | translate }}:</td>
           <td>
-            <a [routerLink]="['/blocks',transaction.bNum]">{{transaction.bNum}}</a>
+            <a [routerLink]="['/blocks',transaction.block_num]">{{transaction.block_num}}</a>
           </td>
         </tr>
         <tr>
           <td>{{ 'Timestamp' | translate }}:</td>
-          <td>{{transaction.bTime.$date | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
+          <td>{{transaction.block_time | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
         </tr>
         <tr>
           <td>{{ 'Expiration' | translate }}:</td>

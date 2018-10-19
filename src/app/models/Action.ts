@@ -8,6 +8,6 @@ export interface Action {
   console?: string;
   total_cpu_usage: number;
   trx_id: string;
-  bNum: number; // block-number
-  bTime: any; // block-time : ("bTime" / "$date") -> timestamp millis
+  block_num: number; // block-number
+  block_time: string; // iso timestamp string
 }

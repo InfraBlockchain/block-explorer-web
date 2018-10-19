@@ -107,20 +107,6 @@ export class EosService {
     return this.getResult<any>(getBlock$);
   }
 
-  getTransactionRaw(blockId: number, id: string): Observable<Result<any>> {
-    const getTransaction$ = defer(() => from(this.eos.getTransaction({
-      id: id,
-      block_num_hint: blockId
-    })));
-    return this.getResult<any>(getTransaction$);
-    // return getTransaction$.pipe(
-    //   map( (txRaw: any) => {
-    //     console.log(txRaw);
-    //     return txRaw;
-    //   } )
-    // );
-  }
-
   getBlock(id: string | number): Observable<Result<Block>> {
     // convert chain promise to cold observable
     const getBlock$ = defer(() => from(this.eos.getBlock(id)));
@@ -137,14 +123,13 @@ export class EosService {
             numTransactions: block.transactions.length,
             prevBlockId: block.previous,
             producer: block.producer,
-            timestamp: moment.utc(block.timestamp).unix(),
-            timestampISO: moment.utc(block.timestamp).toISOString(),
+            blockTime: moment.utc(block.timestamp).toISOString(),
             transactionMerkleRoot: block.transaction_mroot,
             version: block.schedule_version,
             transactions: block.transactions.map(transaction => {
               return <Transaction>{
                 blockNum: block.block_num,
-                timestamp: moment.utc(block.timestamp).unix(),
+                blockTime: moment.utc(block.timestamp).toISOString(),
                 expiration: moment.utc(transaction.trx.transaction.expiration).unix(),
                 id: transaction.trx.id,
                 numActions: transaction.trx.transaction.actions.length,

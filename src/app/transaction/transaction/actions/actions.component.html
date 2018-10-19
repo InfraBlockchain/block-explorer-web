@@ -11,7 +11,7 @@
         <th mat-header-cell *matHeaderCellDef>{{ 'Index' | translate }}</th>
         <td mat-cell *matCellDef="let action; let i = index">
           {{i + 1}}
-          <!--<a [routerLink]="['/actions',action.bNum,action.trx_id,i]">{{i + 1}}</a>-->
+          <!--<a [routerLink]="['/actions',action.block_num,action.trx_id,i]">{{i + 1}}</a>-->
         </td>
       </ng-container>
       <ng-container matColumnDef="global_seq">

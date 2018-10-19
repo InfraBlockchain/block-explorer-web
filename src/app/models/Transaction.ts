@@ -1,7 +1,7 @@
 export interface Transaction {
   id: string;
   blockNum: number;
-  timestamp: number;
+  blockTime: string;
   expiration: number;
   pending: boolean;
   numActions: number;

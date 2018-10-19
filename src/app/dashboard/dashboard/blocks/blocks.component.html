@@ -19,7 +19,7 @@
         <ng-container matColumnDef="timestamp">
           <th mat-header-cell *matHeaderCellDef>{{ 'Block Time' | translate }}</th>
           <td mat-cell *matCellDef="let block">
-            {{block.timestamp | date:'MMM d, y, h:mm:ss.SSS a'}}
+            {{block.blockTime | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}
           </td>
         </ng-container>
         <ng-container matColumnDef="producer">
