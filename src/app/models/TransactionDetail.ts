@@ -9,6 +9,7 @@ export interface TransactionDetail {
   scheduled: boolean;
   action_traces: any[];
   trx_vote?: any;
+  fee_payer?: string;
   except?: any;
   BN?: number;
   expiration: string;
