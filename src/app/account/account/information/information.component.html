@@ -18,9 +18,17 @@
           <td>{{ 'UpdatedAt' | translate }}:</td>
           <td>{{account.last_code_update | amFromUtc | date:'MMM d, y, h:mm:ss.SSS a'}}</td>
         </tr> -->
-        <tr *ngIf="account.core_liquid_balance">
-          <td>{{ 'Balance' | translate }}:</td>
-          <td><b>{{account.core_liquid_balance}}</b></td>
+        <tr *ngIf="account.system_token_balance">
+          <td>{{ 'System Token Balance' | translate }}:</td>
+          <td><b>{{account.system_token_balance.total}}</b></td>
+        </tr>
+        <tr *ngIf="account.system_token_balance.sys_tokens.length > 0">
+          <td></td>
+          <td>
+            <span *ngFor="let sys_token of account.system_token_balance.sys_tokens">
+              [ <a [routerLink]="['/accounts',sys_token.t]">{{sys_token.t}}</a> : {{sys_token.qty}} ]
+            </span>
+          </td>
         </tr>
         <tr *ngIf="account.ram_usage > 0">
           <td>{{ 'RAM Used' | translate }}:</td>
