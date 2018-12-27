@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { EosService } from '../../services/eos.service';
-import { Depository } from '../../models/Depository';
+import { SystemToken } from '../../models/SystemToken';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class DepositoriesComponent implements OnInit {
 
-  columnHeaders$: Observable<string[]> = of(DEPOSITORIES_COLUMNS);
-  depositories$: Observable<Depository[]>;
+  columnHeaders$: Observable<string[]> = of(SYSTEM_TOKEN_COLUMNS);
+  systokens$: Observable<SystemToken[]>;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -21,14 +21,14 @@ export class DepositoriesComponent implements OnInit {
 
   ngOnInit() {
     this.columnHeaders$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
-      map(result => result.matches ? DEPOSITORIES_COLUMNS.filter((c: any) => (c !== 'location' && c !== 'position')) : DEPOSITORIES_COLUMNS)
+      map(result => result.matches ? SYSTEM_TOKEN_COLUMNS.filter((c: any) => (c !== 'location' && c !== 'position')) : SYSTEM_TOKEN_COLUMNS)
     );
-    this.depositories$ = this.eosService.getDepositories().pipe(
-      map(depositories => {
-        return depositories.map((producer, index) => {
+    this.systokens$ = this.eosService.getSystemTokenList().pipe(
+      map(systokens => {
+        return systokens.map((systoken, index) => {
           const position = parseInt(index, 10) + 1;
           return {
-            ...producer,
+            ...systoken,
             position: position,
           };
         });
@@ -38,10 +38,12 @@ export class DepositoriesComponent implements OnInit {
 
 }
 
-export const DEPOSITORIES_COLUMNS = [
+export const SYSTEM_TOKEN_COLUMNS = [
   'position',
-  'owner',
+  'tokenid',
+  'weight',
+  'symbol',
+  'totalsupply',
   'url',
-  'location',
-  'authorized'
+  'description'
 ];

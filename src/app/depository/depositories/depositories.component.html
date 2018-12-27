@@ -1,44 +1,55 @@
 <mat-toolbar color="primary">
   <h1 class="mat-headline">
-      <mat-icon style="vertical-align: text-bottom;">account_balance</mat-icon> {{ 'System Depositories' | translate }}
+      <mat-icon style="vertical-align: text-bottom;">account_balance</mat-icon> {{ 'System Token List' | translate }}
   </h1>
 </mat-toolbar>
 <div style="margin:10px;">
-  <app-table [dataSource]="depositories$ | async" [enablePager]="false">
-    <table mat-table [dataSource]="depositories$ | async">
+  <app-table [dataSource]="systokens$ | async" [enablePager]="false">
+    <table mat-table [dataSource]="systokens$ | async">
       <ng-container *ngIf="columnHeaders$ | async as columnHeaders">
         <tr mat-header-row *matHeaderRowDef="columnHeaders"></tr>
         <tr mat-row *matRowDef="let row; columns: columnHeaders;"></tr>
       </ng-container>
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>#</th>
-        <td mat-cell *matCellDef="let depository">
-          {{depository.position}}
+        <td mat-cell *matCellDef="let systoken">
+          {{systoken.position}}
         </td>
       </ng-container>
-      <ng-container matColumnDef="owner">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Name' | translate }}</th>
-        <td mat-cell *matCellDef="let depository">
-          <a [routerLink]="['/accounts',depository.owner]">{{depository.owner}}</a>
+      <ng-container matColumnDef="tokenid">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Token Account' | translate }}</th>
+        <td mat-cell *matCellDef="let systoken">
+          <a [routerLink]="['/accounts',systoken.id]">{{systoken.id}}</a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Weight' | translate }}</th>
+        <td mat-cell *matCellDef="let systoken">
+          {{systoken.weight}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Symbol' | translate }}</th>
+        <td mat-cell *matCellDef="let systoken">
+          {{systoken.symbol}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalsupply">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Total Supply' | translate }}</th>
+        <td mat-cell *matCellDef="let systoken">
+          <b>{{systoken.total_supply}}</b>
         </td>
       </ng-container>
       <ng-container matColumnDef="url">
         <th mat-header-cell *matHeaderCellDef>{{ 'Url' | translate }}</th>
-        <td mat-cell *matCellDef="let depository">
-          <a href="{{depository.url}}">{{depository.url}}</a>
+        <td mat-cell *matCellDef="let systoken">
+          <a href="{{systoken.url}}">{{systoken.url}}</a>
         </td>
       </ng-container>
-      <ng-container matColumnDef="location">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Location' | translate }}</th>
-        <td mat-cell *matCellDef="let depository">
-          {{depository.location}}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="authorized">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Authorized' | translate }}</th>
-        <td mat-cell *matCellDef="let depository">
-          <span *ngIf="depository.is_authorized">authorized</span>
-          <span *ngIf="!depository.is_authorized">unauthorized</span>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>{{ 'Description' | translate }}</th>
+        <td mat-cell *matCellDef="let systoken">
+          {{systoken.description}}
         </td>
       </ng-container>
     </table>

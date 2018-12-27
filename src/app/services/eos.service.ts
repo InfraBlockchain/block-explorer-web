@@ -1,7 +1,7 @@
 import * as Eos from 'eosjs';
 import * as moment from 'moment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, from, of, timer, defer, combineLatest } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
@@ -237,6 +237,16 @@ export class EosService {
       limit: 1
     })).pipe(
       map((result: any) => result.rows[0])
+    );
+  }
+
+  getSystemTokenList() {
+    return this.http.post(`${environment.blockchainUrl}/v1/chain/get_system_token_list`, {
+      token_meta: true
+    }).pipe(
+      map((result: any) => {
+        return result.tokens;
+      })
     );
   }
 
