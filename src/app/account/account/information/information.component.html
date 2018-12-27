@@ -64,3 +64,35 @@
     </mat-card-content>
   </mat-card>
 </div>
+<div style="margin:10px;" *ngIf="account.token_info">
+  <mat-card>
+    <mat-card-title>
+      <mat-icon style="vertical-align: text-top;">description</mat-icon>
+      {{ 'Built-in Standard Token Information' | translate }}
+    </mat-card-title>
+    <mat-card-content class="table-container">
+      <table>
+        <tr>
+          <td>{{ 'Token ID' | translate }}:</td>
+          <td><a [routerLink]="['/accounts',account.token_info.token_id]">{{account.token_info.token_id}}</a></td>
+        </tr>
+        <tr>
+          <td>{{ 'Token Symbol (precision, name)' | translate }}:</td>
+          <td>{{account.token_info.symbol}}</td>
+        </tr>
+        <tr>
+          <td>{{ 'Total Supply' | translate }}:</td>
+          <td><b>{{account.token_info.total_supply}}</b></td>
+        </tr>
+        <tr>
+          <td>{{ 'Token Info Url' | translate }}:</td>
+          <td><a href="{{account.token_info.url}}">{{account.token_info.url}}</a></td>
+        </tr>
+        <tr>
+          <td>{{ 'Token Description' | translate }}:</td>
+          <td>{{account.token_info.description}}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
