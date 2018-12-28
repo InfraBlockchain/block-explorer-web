@@ -2,8 +2,8 @@ export interface SystemToken {
   position: number;
   id: string;
   weight: number;
-  symbol: string;
+  sym: string;
   total_supply: string;
   url: string;
-  description: string;
+  desc: string;
 }

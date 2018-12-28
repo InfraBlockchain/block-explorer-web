@@ -68,7 +68,7 @@
   <mat-card>
     <mat-card-title>
       <mat-icon style="vertical-align: text-top;">description</mat-icon>
-      {{ 'Built-in Standard Token Information' | translate }}
+      {{ 'Token Information' | translate }}
     </mat-card-title>
     <mat-card-content class="table-container">
       <table>
@@ -78,7 +78,7 @@
         </tr>
         <tr>
           <td>{{ 'Token Symbol (precision, name)' | translate }}:</td>
-          <td>{{account.token_info.symbol}}</td>
+          <td>{{account.token_info.sym}}</td>
         </tr>
         <tr>
           <td>{{ 'Total Supply' | translate }}:</td>
@@ -90,7 +90,7 @@
         </tr>
         <tr>
           <td>{{ 'Token Description' | translate }}:</td>
-          <td>{{account.token_info.description}}</td>
+          <td>{{account.token_info.desc}}</td>
         </tr>
       </table>
     </mat-card-content>
