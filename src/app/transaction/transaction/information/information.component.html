@@ -58,7 +58,7 @@
           </td>
         </tr>
         <tr>
-          <td>{{ 'Delegated Tx Fee Payer' | translate }}:</td>
+          <td>{{ 'Tx Fee Payer' | translate }}:</td>
           <td *ngIf="transaction.fee_payer">
             <b><a [routerLink]="['/accounts',transaction.fee_payer]">{{transaction.fee_payer}}</a></b>
           </td>
