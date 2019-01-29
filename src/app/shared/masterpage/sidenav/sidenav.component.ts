@@ -48,9 +48,9 @@ export class SidenavComponent implements OnInit {
         name: this.translate.instant('Block Producers')
       },
       {
-        icon: 'account_balance',
+        icon: 'attach_money',
         link: '/systokens',
-        name: this.translate.instant('System Tokens')
+        name: this.translate.instant('Tx Fee Tokens')
       },
       {
         icon: 'how_to_reg',
