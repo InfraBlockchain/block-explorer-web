@@ -5,7 +5,7 @@
     </button>
     <a class="brand" routerLink="/">
       <img style="margin-bottom: 5px;" [src]="logoUrl" />
-      <span class="mat-h2">{{ appName | translate }}</span> <span style="margin-left: 5px;">({{ networkNmae | translate}})</span>
+      <span class="mat-h2">{{ appName | translate }}</span> <span fxShow.gt-xs fxHide.xs style="margin-left: 5px;">({{ networkName | translate}})</span>
     </a>
   </div>
   <app-search (onSearchExpanded)="searchExpanded = $event" [ngClass]="searchExpanded ? 'search-expanded' : 'search-collapsed'"></app-search>

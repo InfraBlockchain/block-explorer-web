@@ -4,14 +4,14 @@
   </button>
   <form (submit)="search()" novalidate fxShow.gt-xs fxHide.xs style="min-width:360px;">
     <mat-icon>search</mat-icon>
-    <input type="search" placeholder="{{ 'Block / Transaction / Account / Pub-Key' | translate }}" [formControl]="query" class="mat-elevation-z1">
+    <input type="search" placeholder="{{ 'Account / Transaction / Block' | translate }}" [formControl]="query" class="mat-elevation-z1">
   </form>
 </ng-container>
 <ng-template #expandedView>
   <div fxLayout="row">
     <form fxFlex (submit)="search()" novalidate>
       <mat-icon>search</mat-icon>
-      <input type="search" placeholder="{{ 'Block / Transaction / Account / Pub-Key' | translate }}" [formControl]="query" class="mat-elevation-z1">
+      <input type="search" placeholder="{{ 'Account / Transaction / Block' | translate }}" [formControl]="query" class="mat-elevation-z1">
     </form>
     <button mat-icon-button (click)="collapse()">
       <mat-icon>clear</mat-icon>

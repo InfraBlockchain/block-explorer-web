@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../../services/app.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard-chain-status',
@@ -8,6 +9,7 @@ import { AppService } from '../../../services/app.service';
 })
 export class ChainStatusComponent implements OnInit {
 
+  networkName = environment.networkName;
   status$;
 
   constructor(
