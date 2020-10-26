@@ -32,6 +32,7 @@ export class ProducersComponent implements OnInit {
       switchMap(chainStatus => this.eosService.getProducers().pipe(
         map(producers => {
           return producers.map((producer, index) => {
+            console.log(producer);
             const position = parseInt(index, 10) + 1;
             const percentageVotes = producer.total_votes_weight / chainStatus.total_producer_vote_weight * 100;
             return {
