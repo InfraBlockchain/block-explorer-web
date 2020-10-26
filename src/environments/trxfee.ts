@@ -5,25 +5,25 @@ export const trxfeemeta = {
   operations: {
     'tf.newacc': {
       opName: 'New Account',
-      actAccount: 'yosemite',
+      actAccount: 'infrasys',
       actName: 'newaccount',
       note: ''
     },
     'tf.regprod': {
       opName: 'Register Block Producer Account',
-      actAccount: 'yosemite',
+      actAccount: 'infrasys',
       actName: 'regprod',
       note: ''
     },
     'tf.regsysdep': {
       opName: 'Register System Depository Account',
-      actAccount: 'yosemite',
+      actAccount: 'infrasys',
       actName: 'regsysdep',
       note: ''
     },
     'tf.regidauth': {
       opName: 'Register Identity Authority Account',
-      actAccount: 'yosemite',
+      actAccount: 'infrasys',
       actName: 'regidauth',
       note: ''
     },

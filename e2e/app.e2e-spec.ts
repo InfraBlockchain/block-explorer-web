@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('yosemite-explorer App', () => {
+describe('infrablockchain-explorer App', () => {
   let page: AppPage;
 
   beforeEach(() => {

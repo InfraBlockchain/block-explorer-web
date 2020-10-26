@@ -1,15 +1,15 @@
-YOSEMITE Explorer Web
+InfraBlockchain Explorer Web
 ========================
 
-YOSEMITE Explorer Web is a web frontend implementation of YOSEMITE blockchain explorer (Angular Framework based SPA client)
+InfraBlockchain Explorer Web is a web frontend implementation of InfraBlockchain blockchain network explorer (Angular Framework based SPA client)
 
 
 Getting Started
 ------------
 
 ```bash
-$ git clone git@github.com:YosemiteLabs/yosemite-explorer-web.git
-$ cd yosemite-explorer-web
+$ git clone git@github.com/InfraBlockchain/block-explorer-web.git
+$ cd block-explorer-web
 $ # using node.js version 10.21.x
 $ # using angular cli (ng) version 6.1.x
 $ nvm use v10.21.0

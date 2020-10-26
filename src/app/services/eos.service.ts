@@ -214,8 +214,8 @@ export class EosService {
   getProducers() {
     return from(this.eos.getTableRows({
       json: true,
-      code: "yosemite",
-      scope: "yosemite",
+      code: "infrasys",
+      scope: "infrasys",
       table: "producers",
       limit: 700,
       table_key: ""
@@ -231,8 +231,8 @@ export class EosService {
   getChainStatus() {
     return from(this.eos.getTableRows({
       json: true,
-      code: "yosemite",
-      scope: "yosemite",
+      code: "infrasys",
+      scope: "infrasys",
       table: "global",
       limit: 1
     })).pipe(
@@ -253,8 +253,8 @@ export class EosService {
   getDepositories() {
     return from(this.eos.getTableRows({
       json: true,
-      code: "yosemite",
-      scope: "yosemite",
+      code: "infrasys",
+      scope: "infrasys",
       table: "sysdepos",
       limit: 100,
       table_key: ""
@@ -268,8 +268,8 @@ export class EosService {
   getIdentityAuthorities() {
     return from(this.eos.getTableRows({
       json: true,
-      code: "yosemite",
-      scope: "yosemite",
+      code: "infrasys",
+      scope: "infrasys",
       table: "idauthority",
       limit: 100,
       table_key: ""
@@ -283,8 +283,8 @@ export class EosService {
   getTransactionFees() {
     return from(this.eos.getTableRows({
       json: true,
-      code: "yx.txfee",
-      scope: "yx.txfee",
+      code: "sys.txfee",
+      scope: "sys.txfee",
       table: "txfees",
       limit: 200,
       table_key: ""

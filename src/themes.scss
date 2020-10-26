@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-$mat-yosemite: (
+$mat-infrablockchain: (
     50 : #F5F5F5,
     100 : #EEEEEE,
     200 : #E0E0E0,
@@ -108,16 +108,16 @@ $mat-yosemite: (
 
 @include mat-core();
 
-$app-light-primary: mat-palette($mat-yosemite);
-$app-light-accent: mat-palette($mat-yosemite, A200, A100, A400);
+$app-light-primary: mat-palette($mat-infrablockchain);
+$app-light-accent: mat-palette($mat-infrablockchain, A200, A100, A400);
 $app-light-warn: mat-palette($mat-red);
 $app-light-theme: mat-light-theme($app-light-primary, $app-light-accent, $app-light-warn);
 //.light-theme {
 @include angular-material-theme($app-light-theme);
 //}
 
-$app-dark-primary: mat-palette($mat-yosemite);
-$app-dark-accent: mat-palette($mat-yosemite, A200, A100, A400);
+$app-dark-primary: mat-palette($mat-infrablockchain);
+$app-dark-accent: mat-palette($mat-infrablockchain, A200, A100, A400);
 $app-dark-warn: mat-palette($mat-red);
 $app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
 .dark-theme {

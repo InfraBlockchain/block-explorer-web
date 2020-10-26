@@ -12,7 +12,7 @@ declare let ga: Function;
 })
 
 export class AppComponent {
-  title = 'YOSEMITE Explorer | explorertest.yosemitelabs.org';
+  title = 'InfraBlockchain Explorer | explorertest.infrablockchain.com';
   @LocalStorage()
   language: any;
 

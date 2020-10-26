@@ -3,7 +3,7 @@
     <button mat-icon-button fxHide.gt-sm (click)="onMenuToggle.emit()">
       <mat-icon>menu</mat-icon>
     </button>
-    <a class="brand" routerLink="/">
+    <a class="brand" target="_blank" href="https://infrablockchain.com">
       <img style="margin-bottom: 5px;" [src]="logoUrl" />
       <span class="mat-h2">{{ appName | translate }}</span> <span fxShow.gt-xs fxHide.xs style="margin-left: 5px;">({{ networkName | translate}})</span>
     </a>

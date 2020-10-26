@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "yosemite-explorer": {
+    "infrablockchain-explorer": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -53,18 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "yosemite-explorer:build"
+            "browserTarget": "infrablockchain-explorer:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "yosemite-explorer:build:production"
+              "browserTarget": "infrablockchain-explorer:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "yosemite-explorer:build"
+            "browserTarget": "infrablockchain-explorer:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "yosemite-explorer:serve"
+            "devServerTarget": "infrablockchain-explorer:serve"
           }
         },
         "lint": {
@@ -125,7 +125,7 @@
       }
     }
   },
-  "defaultProject": "yosemite-explorer",
+  "defaultProject": "infrablockchain-explorer",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
